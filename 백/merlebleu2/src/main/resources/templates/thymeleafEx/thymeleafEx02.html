@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>상품 데이터 출력 예제</h1>
+    <div>
+        카테고리 : <span th:text="${prodDto.Category1}"></span> >> <span th:text="${prodDto.Category2}"></span>
+    </div>
+    <div>
+        상품명 : <span th:text="${prodDto.prodNm}"></span>
+    </div>
+
+    <div>
+        상품등록일 : <span th:text="${prodDto.regTime}"></span>
+    </div>
+    <div>
+        상품가격 : <span th:text="${prodDto.Listprice}"></span>
+    </div>
+    <div>
+        할인율 : <span th:text="${prodDto.Discount}"></span>
+    </div>
+    <div>
+        판매가격 : <span th:text="${prodDto.Sellprice}"></span>
+    </div>
+
+    <div>
+        상품코드 : <span th:text="${prodDto.prodCode}"></span>
+    </div>
+</body>
+</html>
