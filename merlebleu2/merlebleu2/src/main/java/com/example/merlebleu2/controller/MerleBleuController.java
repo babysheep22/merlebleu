@@ -14,10 +14,10 @@ public class MerleBleuController {
     @GetMapping(value = "/")
     public String merlebleuMain(Model model){
         return "/MerleBleu/main.html";
-    }
+    } //메인페이지 경로
 
     @GetMapping(value = "/search_outer")
     public String merlbleusearchouter(Model model){
-        return "MerleBleu/prod/prodList/search_outer.html";
+        return "MerleBleu/prod/prodList/search_outer.html"; //상품 목록 경로
     }
 }
