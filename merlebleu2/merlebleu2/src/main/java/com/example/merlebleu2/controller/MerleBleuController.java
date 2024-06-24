@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = "/merlebleu")
 public class MerleBleuController {
-    @GetMapping(value = "/")
+    @GetMapping(value = "/main")
     public String merlebleuMain(Model model){
         return "/MerleBleu/main.html";
     } //메인페이지 경로

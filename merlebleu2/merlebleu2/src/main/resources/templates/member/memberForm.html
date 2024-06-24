@@ -1,65 +1,775 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout1}">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const openModalBtn = document.getElementById('openModalBtn');
+            const idModal = document.getElementById('myModal');
+            const closeModalBtn = idModal.querySelector('.close');
 
-<!-- 사용자 CSS 추가 -->
-<th:block layout:fragment="css">
-    <style>
-        .fieldError {
-            color: #bd2130;
-        }
-    </style>
-</th:block>
+            openModalBtn.addEventListener('click', function () {
+                idModal.style.display = 'block';
+            });
 
-<!-- 사용자 스크립트 추가 -->
-<th:block layout:fragment="script">
+            closeModalBtn.addEventListener('click', function () {
+                idModal.style.display = 'none';
+            });
 
-    <script th:inline="javascript">
-        $(document).ready(function(){
-            var errorMessage = [[${errorMessage}]];
-            if(errorMessage != null){
-                alert(errorMessage);
+            window.addEventListener('click', function (event) {
+                if (event.target === idModal) {
+                    idModal.style.display = 'none';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const openModalBtn = document.getElementById('openModalBtn2');
+            const idModal = document.getElementById('myModal2');
+            const closeModalBtn = idModal.querySelector('.close2');
+
+            openModalBtn.addEventListener('click', function () {
+                idModal.style.display = 'block';
+            });
+
+            closeModalBtn.addEventListener('click', function () {
+                idModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target === idModal) {
+                    idModal.style.display = 'none';
+                }
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const openModalBtn = document.getElementById('openModalBtn3');
+            const idModal = document.getElementById('myModal3');
+            const closeModalBtn = idModal.querySelector('.close3');
+
+            openModalBtn.addEventListener('click', function () {
+                idModal.style.display = 'block';
+            });
+
+            closeModalBtn.addEventListener('click', function () {
+                idModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target === idModal) {
+                    idModal.style.display = 'none';
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const nameInput = document.querySelector(".name");
+            const idInput = document.querySelector(".id");
+            const nickInput = document.querySelector(".nick");
+            const emailInput = document.querySelector(".email");
+            const pwInput = document.querySelector(".pw");
+            const pwchkInput = document.querySelector(".pwchk");
+            const phoneInput = document.querySelector(".phone");
+            const addressInput = document.querySelector(".address");
+            const banknumInput = document.querySelector(".banknum");
+            const banknameInput = document.querySelector(".bankname");
+            const errorMessage = nameInput.nextElementSibling;
+            const errorMessage2 = idInput.nextElementSibling;
+            const errorMessage3 = nickInput.nextElementSibling;
+            const errorMessage4 = emailInput.nextElementSibling;
+            const errorMessage5 = pwInput.nextElementSibling;
+            const errorMessage6 = pwchkInput.nextElementSibling;
+            const errorMessage7 = phoneInput.nextElementSibling;
+            const errorMessage8 = addressInput.nextElementSibling;
+            const errorMessage9 = banknumInput.nextElementSibling;
+            const errorMessage10 = banknameInput.nextElementSibling;
+
+            nameInput.addEventListener("input", function () {
+                errorMessage.style.display = "none";
+            });
+
+            idInput.addEventListener("input", function () {
+                errorMessage2.style.display = "none";
+            });
+
+            nickInput.addEventListener("input", function () {
+                errorMessage3.style.display = "none";
+            });
+
+            emailInput.addEventListener("input", function () {
+                errorMessage4.style.display = "none";
+            });
+
+            pwInput.addEventListener("input", function () {
+                errorMessage5.style.display = "none";
+            });
+
+            pwchkInput.addEventListener("input", function () {
+                errorMessage6.style.display = "none";
+            });
+
+            phoneInput.addEventListener("input", function () {
+                errorMessage7.style.display = "none";
+            });
+
+            addressInput.addEventListener("input", function () {
+                errorMessage8.style.display = "none";
+            });
+
+            banknumInput.addEventListener("input", function () {
+                errorMessage9.style.display = "none";
+            });
+
+            banknameInput.addEventListener("input", function () {
+                errorMessage10.style.display = "none";
+            });
+
+            nameInput.addEventListener("blur", function () {
+                if (!nameInput.value.trim()) {
+                    errorMessage.style.display = "block";
+                }
+            });
+
+            idInput.addEventListener("blur", function () {
+                if (!idInput.value.trim()) {
+                    errorMessage2.style.display = "block";
+                }
+            });
+
+            nickInput.addEventListener("blur", function () {
+                if (!nickInput.value.trim()) {
+                    errorMessage3.style.display = "block";
+                }
+            });
+
+            emailInput.addEventListener("blur", function () {
+                if (!emailInput.value.trim()) {
+                    errorMessage4.style.display = "block";
+                }
+            });
+
+            pwInput.addEventListener("blur", function () {
+                if (!pwInput.value.trim()) {
+                    errorMessage5.style.display = "block";
+                }
+            });
+
+            pwchkInput.addEventListener("blur", function () {
+                if (!pwchkInput.value.trim()) {
+                    errorMessage6.style.display = "block";
+                }
+            });
+
+            phoneInput.addEventListener("blur", function () {
+                if (!phoneInput.value.trim()) {
+                    errorMessage7.style.display = "block";
+                }
+            });
+
+            addressInput.addEventListener("blur", function () {
+                if (!addressInput.value.trim()) {
+                    errorMessage8.style.display = "block";
+                }
+            });
+
+            banknumInput.addEventListener("blur", function () {
+                if (!banknumInput.value.trim()) {
+                    errorMessage9.style.display = "block";
+                }
+            });
+
+            banknameInput.addEventListener("blur", function () {
+                if (!banknameInput.value.trim()) {
+                    errorMessage10.style.display = "block";
+                }
+            });
+
+            document.getElementById("signupForm").addEventListener("submit", function (event) {
+                if (!nameInput.value.trim()) {
+                    errorMessage.style.display = "block";
+                    event.preventDefault();
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const requiredInputs = document.querySelectorAll('input[data-required="true"]');
+            const agreementCheckboxes = document.querySelectorAll('.individual-term');
+            const groupAllCheckbox = document.querySelector('.group-all');
+            const signUpButton = document.querySelector('.submit');
+            const refundRadios = document.querySelectorAll('input[name="bank"]');
+            const mandatoryCheckMessage = document.querySelector('#mandatory-check-message');
+            const bankSelector = document.getElementById('bankSelector');
+            const phoneInput1 = document.getElementById('phone2');
+            const phoneInput2 = document.getElementById('phone3');
+            const pwInput = document.getElementById("pw");
+            const pwchkInput = document.getElementById("pwchk");
+            const passwordLengthFeedback = document.getElementById("passwordLengthFeedback");
+            const passwordMatchFeedback = document.getElementById("passwordMatchFeedback");
+            const signupForm = document.getElementById("signupForm");
+
+            // 이벤트 리스너 추가
+            requiredInputs.forEach(input => {
+                input.addEventListener('input', checkFormValidity);
+            });
+
+            agreementCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', checkIndividualTerms);
+            });
+
+            groupAllCheckbox.addEventListener('change', toggleAllAgreements);
+
+            refundRadios.forEach(radio => {
+                radio.addEventListener('change', checkFormValidity);
+            });
+
+            bankSelector.addEventListener('change', checkFormValidity);
+
+            phoneInput1.addEventListener('input', checkPhoneNumberValidity);
+            phoneInput2.addEventListener('input', checkPhoneNumberValidity);
+
+            pwInput.addEventListener("input", function () {
+                if (pwInput.value.length < 4 || pwInput.value.length > 16) {
+                    passwordLengthFeedback.classList.remove("hidden");
+                } else {
+                    passwordLengthFeedback.classList.add("hidden");
+                }
+                validatePassword();
+            });
+
+            pwchkInput.addEventListener("input", function () {
+                if (pwchkInput.value !== pwInput.value) {
+                    passwordMatchFeedback.textContent = "비밀번호가 일치하지 않습니다.";
+                    passwordMatchFeedback.classList.remove("hidden");
+                } else {
+                    passwordMatchFeedback.textContent = "";
+                    passwordMatchFeedback.classList.add("hidden");
+                }
+                validatePassword();
+            });
+
+            signupForm.addEventListener("submit", function (event) {
+                if (signUpButton.disabled) {
+                    event.preventDefault();
+                }
+            });
+
+            function checkIndividualTerms() {
+                const allIndividualChecked = Array.from(agreementCheckboxes).every(term => term.checked);
+                groupAllCheckbox.checked = allIndividualChecked;
+                checkFormValidity();
+            }
+
+            function toggleAllAgreements() {
+                agreementCheckboxes.forEach(checkbox => {
+                    checkbox.checked = groupAllCheckbox.checked;
+                });
+                checkFormValidity();
+            }
+
+            function checkFormValidity() {
+                let allInputsValid = true;
+
+                requiredInputs.forEach(input => {
+                    if (input.value.trim() === '') {
+                        allInputsValid = false;
+                    }
+                });
+
+                const isRefundSelected = Array.from(refundRadios).some(radio => radio.checked);
+                if (!isRefundSelected) {
+                    allInputsValid = false;
+                    mandatoryCheckMessage.style.display = 'block';
+                } else {
+                    mandatoryCheckMessage.style.display = 'none';
+                }
+
+                const allTermsAgreed = Array.from(agreementCheckboxes).every(checkbox => checkbox.checked);
+
+                const isBankSelected = bankSelector.value !== '';
+                if (!isBankSelected) {
+                    allInputsValid = false;
+                }
+
+                signUpButton.disabled = !(allInputsValid && allTermsAgreed);
+            }
+
+            function checkPhoneNumberValidity() {
+                const phone1Value = phoneInput1.value.trim();
+                const phone2Value = phoneInput2.value.trim();
+
+                signUpButton.disabled = !(phone1Value.length === 4 && phone2Value.length === 4);
+            }
+
+            function validatePassword() {
+                const isPasswordValid = pwInput.value.length >= 4 && pwInput.value.length <= 16;
+                const isPasswordMatch = pwInput.value === pwchkInput.value;
+                if (isPasswordValid && isPasswordMatch) {
+                    signUpButton.disabled = false;
+                    signUpButton.classList.remove("disabled");
+                } else {
+                    signUpButton.disabled = true;
+                    signUpButton.classList.add("disabled");
+                }
             }
         });
+
+        function sample4_execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    var roadAddr = data.roadAddress;
+                    var extraRoadAddr = '';
+
+                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                        extraRoadAddr += data.bname;
+                    }
+                    if (data.buildingName !== '' && data.apartment === 'Y') {
+                        extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    if (extraRoadAddr !== '') {
+                        extraRoadAddr = ' (' + extraRoadAddr + ')';
+                    }
+
+                    document.getElementById('sample4_postcode').value = data.zonecode;
+                    document.getElementById("sample4_roadAddress").value = roadAddr;
+                    document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                    if (roadAddr !== '') {
+                        document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                    } else {
+                        document.getElementById("sample4_extraAddress").value = '';
+                    }
+
+                    var guideTextBox = document.getElementById("guide");
+                    if (data.autoRoadAddress) {
+                        var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                        guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                        guideTextBox.style.display = 'block';
+                    } else if (data.autoJibunAddress) {
+                        var expJibunAddr = data.autoJibunAddress;
+                        guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                        guideTextBox.style.display = 'block';
+                    } else {
+                        guideTextBox.innerHTML = '';
+                        guideTextBox.style.display = 'none';
+                    }
+                }
+            }).open();
+        }
+
+        function moveFocus(event, nextFieldId) {
+            if (event.target.value.length === event.target.maxLength) {
+                document.getElementById(nextFieldId).focus();
+            }
+        }
     </script>
+    <style>
+        * {
 
-</th:block>
+            box-sizing: border-box;
+        }
 
-<div layout:fragment="content">
+        body {}
 
+        .wrapper {
+            width: 100%;
+            height: 1600px;
+            display: flex;
+            justify-content: center;
+            background: #ebecf0;
+            overflow: hidden;
+
+        }
+
+        .wrapper form {
+            width: 700px;
+            background: #ffffff5d;
+            border-radius: 2%;
+            box-shadow: -5px -5px 10px #fff, 5px 5px 10px #c4c4c47c;
+
+
+        }
+
+        .wrapper form h1 {
+            font-size: 40px;
+            text-align: center;
+        }
+
+        .wrapper p {
+            margin-left: 65px;
+        }
+
+        .wrapper ul {
+            list-style: none;
+            margin-left: 30px;
+
+        }
+
+        .wrapper ul li {}
+
+        .wrapper ul li label {
+            display: inline-block;
+            width: 150px;
+            line-height: 55px;
+
+        }
+
+        .wrapper ul li input {
+            width: 350px;
+            line-height: 25px;
+
+
+        }
+
+        .wrapper ul li input:not(.can) {
+            background: #eee;
+            box-shadow: inset 7px 2px 10px #babebc, inset -5px -5px 12px #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding-left: 15px;
+            outline: none;
+        }
+
+        .wrapper ul li button {
+            line-height: 25px;
+            border: none;
+            color: #6e6e6e;
+
+            font-weight: bold;
+            border-radius: 5px;
+
+        }
+
+
+        .valid {
+            color: green;
+        }
+
+
+
+        .hidden {
+            display: none;
+        }
+
+        .error-message {
+            color: red;
+            margin-left: 160px;
+
+        }
+
+        .invalid {
+            border: 2px 2px 2px solid red;
+        }
+
+        .form-button {
+            box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+        }
+
+        .form-button:active {
+            box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
+        }
+
+
+        .wrapper select {
+            height: 31px;
+            width: 95px;
+            background: #eee;
+            box-shadow: inset 7px 2px 10px #babebc, inset -5px -5px 12px #ffffff;
+            padding-left: 10px;
+        }
+
+        .checkbox:checked {
+            background-color: #2bb632;
+            border-color: #2bb632;
+
+
+        }
+
+        .checkbox {
+            height: 1.2em;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            appearance: none;
+            position: relative;
+            left: 167px;
+            top: 7px;
+        }
+
+        .checkbox[type=checkbox] {
+            border-radius: 1em;
+        }
+
+        .checkbox[type=checkbox]:checked::before {
+            content: '✔';
+            display: inline-block;
+            font-size: 1.2em;
+            line-height: 1;
+            color: #fff;
+            position: relative;
+            top: -4px;
+
+        }
+
+        .information>a {
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            left: 165px;
+            color: #9e9e9e;
+        }
+
+        .submit {
+            width: 200px;
+            line-height: 28px;
+            background-color: #ffffff;
+            color: #000000;
+            font-weight: bold;
+            font-size: 15px;
+            border: none;
+            border-radius: 5px;
+
+        }
+
+        .submit_can {
+            width: 200px;
+            line-height: 28px;
+            background-color: #ffffff;
+            color: #000000;
+            font-weight: bold;
+            font-size: 15px;
+            border: none;
+            border-radius: 5px;
+
+        }
+
+
+
+
+        .submit:active {
+            box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
+        }
+
+        .b-bottom {
+            border-bottom: #fff 1.5px solid;
+            width: 514px;
+            position: relative;
+            left: -70px;
+        }
+
+        .c-bottom {
+            box-shadow: -5px -5px 10px #fff, 5px 5px 10px #c4c4c47c;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+
+        .red-square {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background-color: red;
+            margin-right: 10px;
+            top: -15px;
+            left: 12px;
+            position: relative;
+        }
+
+        .book_logo {
+            top: -35px;
+            left: 400px;
+            background-image: url(./image/rebook.png);
+            background-repeat: none;
+            background-position: 167px 95px;
+            background-size: 170px;
+            width: 170px;
+            height: 100px;
+            margin: 62px 0px;
+            border-radius: 20px;
+            position: fixed;
+        }
+
+        .book_logo:hover {
+            width: 170px;
+            height: 100px;
+            margin: 62px 0px;
+            border-radius: 20px;
+            box-shadow: 0 0 5px #beff81,
+                0 0 25px #beff81,
+                0 0 50px #beff81,
+                0 0 100px #beff81;
+
+
+        }
+
+
+        input::placeholder {
+            color: rgb(173, 173, 173);
+
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: -200px;
+            width: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background: none;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 560px;
+        }
+
+        .modal-content img {
+            border-radius: 20px;
+        }
+
+        .close,
+        .close2,
+        .close3 {
+            position: absolute;
+            color: #aaa;
+            float: right;
+            font-size: 100px;
+            font-weight: bold;
+            left: 1230px;
+            top: 265px;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .close2:hover,
+        .close2:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .close3:hover,
+        .close3:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content .fa {
+            position: absolute;
+            width: 100px;
+            height: 20px;
+            top: 994px;
+            left: 817px;
+            font-size: 13px;
+        }
+
+        .modal-content .fa>a {
+            text-decoration: none;
+            list-style: none;
+            color: inherit;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
     <form action="/members/new" role="form" method="post"  th:object="${memberFormDto}">
-        <div class="form-group">
-            <label th:for="name">이름</label>
-            <input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력해주세요">
-            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>
-        </div>
-        <div class="form-group">
-            <label th:for="email">이메일주소</label>
-            <input type="email" th:field="*{email}" class="form-control" placeholder="이메일을 입력해주세요">
-            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>
-        </div>
-        <div class="form-group">
-            <label th:for="password">비밀번호</label>
-            <input type="password" th:field="*{password}" class="form-control" placeholder="비밀번호 입력">
-            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>
-        </div>
-        <div class="form-group">
-            <label th:for="address1">주소</label>
-            <input type="text" th:field="*{address1}" class="form-control" placeholder="주소를 입력해주세요">
-            <p th:if="${#fields.hasErrors('address1')}" th:errors="*{address1}" class="fieldError">Incorrect data</p>
-        </div>
-        <div class="form-group">
-            <label th:for="phonenum">전화번호</label>
-            <input type="text" th:field="*{phonenum}" class="form-control" placeholder="전화번호를 입력해주세요">
-            <p th:if="${#fields.hasErrors('phonenum')}" th:errors="*{address}" class="fieldError">Incorrect data</p>
-        </div>
-        <div style="text-align: center">
-            <button type="submit" class="btn btn-primary" style="">Submit</button>
-        </div>
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-    </form>
+        <header>
+            <h1>회원가입</h1>
+            <br>
+        </header>
+        <p> <span class="red-square"></span> 필수 입력사항</p>
+        <div>
+            <ul>
+                <li>
+                    <label th:for="name"><span class="red-square"></span>이름</label>
+                    <input type="text" th:field="*{name}" class="name" id="name" data-required="true" minlength="4"
+                           maxlength="16" autofocus placeholder="Name">
+                    <span class="error-message" style="font-size: 12px; color: red;">※이름 입력</span>
+                </li>
+                <li>
+                    <label th:for="password"><span class="red-square"></span>비밀번호</label>
+                    <input type="password" th:field="*{password}" class="pw" id="pw" data-required="true" minlength="4"
+                           maxlength="16" placeholder="Password">
+                    <span class="error-message" style="font-size: 12px; color: red;">※비밀번호 입력</span>
+                </li>
+                <span id="passwordLengthFeedback" class="hidden error"
+                      style="font-size: 12px; margin-left: 160px; color: red; letter-spacing: -0.5px;">
+                        4글자 이상으로 비밀번호를 입력해주세요
+                    </span>
 
+                <li>
+                    <label for="phone"><span class="red-square"></span>휴대폰</label>
+                    <button type="button" style="width: 95px;" class="form-button" disabled>인증번호받기</button>
+                    <input type="tel" name="phone" id="phone" data-required="true" style="width: 61px;"
+                           maxlength="3" oninput="moveFocus(event, 'phone2')" value="010" disabled> -
+                    <input type="tel" name="phone2" id="phone2" data-required="true" style="width: 76px;"
+                           maxlength="4" minlength="4" oninput="moveFocus(event, 'phone3')"> -
+                    <input type="tel" name="phone3" class="phone" id="phone3" data-required="true"
+                           style="width: 76px;" maxlength="4" minlength="4">
+                    <span class="error-message" style="font-size: 12px; color: red;">※휴대전화 입력</span>
+                </li>
+                <li>
+                    <label th:for="mail"><span class="red-square"></span>이메일</label>
+                    <input type="email" name="email" class="email" id="email" data-required="true" minlength="8"
+                           maxlength="50" placeholder="Email">
+                    <span class="error-message" style="font-size: 12px; color: red;">※이메일 입력</span>
+                </li>
+                <span style="font-size: 12px; margin-left: 160px; letter-spacing: -0.5px;">아이디 또는 비밀번호 찾기에서
+                        사용됩니다.</span>
+                <li>
+                    <label th:for="address"><span class="red-square"></span>주소</label>
+                    <input type="text" id="sample4_postcode" placeholder="우편번호" disabled style="width: 250px;"
+                           data-required="true">
+                    <button style="width: 95px; font-size: 12px;" type="button" onclick="sample4_execDaumPostcode()"
+                            value="우편번호 찾기" class="form-button">우편번호 검색</button>
+                    <input type="text" id="sample4_roadAddress" placeholder="도로명주소" disabled
+                           style="margin-left: 156px;">
+                </li>
+                <li class="placeholder">
+                    <label th:for="address"><span class="red-square"></span>상세주소</label>
+                    <input type="text" class="address" id="sample4_detailAddress" placeholder="상세주소 입력"
+                           data-required="true" minlength="1" maxlength="32">
+                    <span class="error-message" style="font-size: 12px; color: red;">※상세주소
+                            입력</span>
+                </li>
+                <li style="display: none;">
+                    <label th:for="address"></label>
+                    <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+                    <span id="guide" style="color:#999;display:none"></span>
+                </li>
+                <li>
+                    <label th:for="message"></label>
+                    <input type="text" id="sample4_extraAddress" placeholder="참고항목" disabled>
+                </li>
+            </ul>
+
+
+            <br><br>
+            <div style="text-align: center;">
+                <button type="reset" class="submit_can form-button">취소</button>
+                <button type="submit" class="submit form-button">회원가입</button>
+            </div>
+        </div>
+    </form>
 </div>
+
+</body>
 
 </html>

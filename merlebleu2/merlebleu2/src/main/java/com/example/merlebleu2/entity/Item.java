@@ -34,7 +34,7 @@ public class Item {
     private Integer discount;
     
     
-    //private int stockNumber; //재고수량
+    private int stockNumber; //재고수량
     //private ItemSellStatus itemSellStatus; 판매상태
 
     
