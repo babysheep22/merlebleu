@@ -35,7 +35,6 @@ public class Item {
     
     
     private int stockNumber; //재고수량
-    //private ItemSellStatus itemSellStatus; 판매상태
 
     
     //카테고리

@@ -13,6 +13,8 @@ function redirectToSearch1() {
         query = 'search_pants#';
     } else if (searchKeyword === '원피스') {
         query = 'search_onepiece#';
+    } else if (searchKeyword === '패션잡화') {
+        query = 'search_stuff#';
     } else {
         // Show error message
         document.getElementById('errorMessage1').textContent = '검색어가 카테고리에 없습니다. 카테고리 중 하나를 선택해주세요.';
@@ -44,6 +46,8 @@ function handleSearch() {
         query = 'search_pants#';
     } else if (searchKeyword === '원피스') {
         query = 'search_onepiece#';
+    } else if (searchKeyword === '패션잡화') {
+        query = 'search_stuff#';
     } else {
         // Show error message and return if search keyword is not in categories
         document.getElementById('errorMessage2').textContent = '검색어가 카테고리에 없습니다. 카테고리 중 하나를 선택해주세요.';

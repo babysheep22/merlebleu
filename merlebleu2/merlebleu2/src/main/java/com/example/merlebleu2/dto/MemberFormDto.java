@@ -17,7 +17,7 @@ public class MemberFormDto {
     @Email(message = "이메일 형식으로 입력해주세요.")
     private String email;
 
-    @NotEmpty(message = "저노하번호는 필수 입력 값입니다.")
+    @NotEmpty(message = "전화번호는 필수 입력 값입니다.")
     @Length(min = 9, max = 11, message = "비밀번호는 9자 이상 11자 이하로 입력해주세요.")
     private String phonenum;
 

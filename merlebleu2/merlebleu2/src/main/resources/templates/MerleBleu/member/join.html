@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,9 +73,9 @@
             const idInput = document.querySelector(".id");
             const nickInput = document.querySelector(".nick");
             const emailInput = document.querySelector(".email");
-            const pwInput = document.querySelector(".pw");
-            const pwchkInput = document.querySelector(".pwchk");
-            const phoneInput = document.querySelector(".phone");
+            const passwordInput = document.querySelector(".password");
+            const passwordchkInput = document.querySelector(".passwordchk");
+            const phonenumInput = document.querySelector(".phonenum");
             const addressInput = document.querySelector(".address");
             const banknumInput = document.querySelector(".banknum");
             const banknameInput = document.querySelector(".bankname");
@@ -82,9 +83,9 @@
             const errorMessage2 = idInput.nextElementSibling;
             const errorMessage3 = nickInput.nextElementSibling;
             const errorMessage4 = emailInput.nextElementSibling;
-            const errorMessage5 = pwInput.nextElementSibling;
-            const errorMessage6 = pwchkInput.nextElementSibling;
-            const errorMessage7 = phoneInput.nextElementSibling;
+            const errorMessage5 = passwordInput.nextElementSibling;
+            const errorMessage6 = passwordchkInput.nextElementSibling;
+            const errorMessage7 = phonenumInput.nextElementSibling;
             const errorMessage8 = addressInput.nextElementSibling;
             const errorMessage9 = banknumInput.nextElementSibling;
             const errorMessage10 = banknameInput.nextElementSibling;
@@ -105,15 +106,15 @@
                 errorMessage4.style.display = "none";
             });
 
-            pwInput.addEventListener("input", function () {
+            passwordInput.addEventListener("input", function () {
                 errorMessage5.style.display = "none";
             });
 
-            pwchkInput.addEventListener("input", function () {
+            passwordchkInput.addEventListener("input", function () {
                 errorMessage6.style.display = "none";
             });
 
-            phoneInput.addEventListener("input", function () {
+            phonenumInput.addEventListener("input", function () {
                 errorMessage7.style.display = "none";
             });
 
@@ -153,20 +154,20 @@
                 }
             });
 
-            pwInput.addEventListener("blur", function () {
-                if (!pwInput.value.trim()) {
+            passwordInput.addEventListener("blur", function () {
+                if (!passwordInput.value.trim()) {
                     errorMessage5.style.display = "block";
                 }
             });
 
-            pwchkInput.addEventListener("blur", function () {
-                if (!pwchkInput.value.trim()) {
+            passwordchkInput.addEventListener("blur", function () {
+                if (!passwordchkInput.value.trim()) {
                     errorMessage6.style.display = "block";
                 }
             });
 
-            phoneInput.addEventListener("blur", function () {
-                if (!phoneInput.value.trim()) {
+            phonenumInput.addEventListener("blur", function () {
+                if (!phonenumInput.value.trim()) {
                     errorMessage7.style.display = "block";
                 }
             });
@@ -205,10 +206,10 @@
             const refundRadios = document.querySelectorAll('input[name="bank"]');
             const mandatoryCheckMessage = document.querySelector('#mandatory-check-message');
             const bankSelector = document.getElementById('bankSelector');
-            const phoneInput1 = document.getElementById('phone2');
-            const phoneInput2 = document.getElementById('phone3');
-            const pwInput = document.getElementById("pw");
-            const pwchkInput = document.getElementById("pwchk");
+            const phonenumInput1 = document.getElementById('phonenum2');
+            const phonenumInput2 = document.getElementById('phonenum3');
+            const passwordInput = document.getElementById("password");
+            const passwordchkInput = document.getElementById("passwordchk");
             const passwordLengthFeedback = document.getElementById("passwordLengthFeedback");
             const passwordMatchFeedback = document.getElementById("passwordMatchFeedback");
             const signupForm = document.getElementById("signupForm");
@@ -230,11 +231,11 @@
 
             bankSelector.addEventListener('change', checkFormValidity);
 
-            phoneInput1.addEventListener('input', checkPhoneNumberValidity);
-            phoneInput2.addEventListener('input', checkPhoneNumberValidity);
+            phonenumInput1.addEventListener('input', checkPhoneNumberValidity);
+            phonenumInput2.addEventListener('input', checkPhoneNumberValidity);
 
-            pwInput.addEventListener("input", function () {
-                if (pwInput.value.length < 4 || pwInput.value.length > 16) {
+            passwordInput.addEventListener("input", function () {
+                if (passwordInput.value.length < 4 || passwordInput.value.length > 16) {
                     passwordLengthFeedback.classList.remove("hidden");
                 } else {
                     passwordLengthFeedback.classList.add("hidden");
@@ -242,8 +243,8 @@
                 validatePassword();
             });
 
-            pwchkInput.addEventListener("input", function () {
-                if (pwchkInput.value !== pwInput.value) {
+            passwordchkInput.addEventListener("input", function () {
+                if (passwordchkInput.value !== passwordInput.value) {
                     passwordMatchFeedback.textContent = "비밀번호가 일치하지 않습니다.";
                     passwordMatchFeedback.classList.remove("hidden");
                 } else {
@@ -300,15 +301,15 @@
             }
 
             function checkPhoneNumberValidity() {
-                const phone1Value = phoneInput1.value.trim();
-                const phone2Value = phoneInput2.value.trim();
+                const phonenum1Value = phonenumInput1.value.trim();
+                const phonenum2Value = phonenumInput2.value.trim();
 
-                signUpButton.disabled = !(phone1Value.length === 4 && phone2Value.length === 4);
+                signUpButton.disabled = !(phonenum1Value.length === 4 && phonenum2Value.length === 4);
             }
 
             function validatePassword() {
-                const isPasswordValid = pwInput.value.length >= 4 && pwInput.value.length <= 16;
-                const isPasswordMatch = pwInput.value === pwchkInput.value;
+                const isPasswordValid = passwordInput.value.length >= 4 && passwordInput.value.length <= 16;
+                const isPasswordMatch = passwordInput.value === passwordchkInput.value;
                 if (isPasswordValid && isPasswordMatch) {
                     signUpButton.disabled = false;
                     signUpButton.classList.remove("disabled");
@@ -687,9 +688,10 @@
         }
     </style>
 </head>
+
 <body>
 <div class="wrapper">
-    <form action="/members/new" role="form" method="post"  th:object="${memberFormDto}">
+    <form>
         <header>
             <div><a href="./new_header_new.html" style="font-size: 80px;">
                 <div class="book_logo"></div>
@@ -701,14 +703,27 @@
         <div>
             <ul>
                 <li>
-                    <label th:for="name"><span class="red-square"></span>이름</label>
-                    <input type="text" th:field="*{name}" class="name" id="name" data-required="true" minlength="4"
+                    <label for="name"><span class="red-square"></span>이름</label>
+                    <input type="text" name="name" class="name" id="name" data-required="true" minlength="4"
                            maxlength="16" autofocus placeholder="Name">
                     <span class="error-message" style="font-size: 12px; color: red;">※이름 입력</span>
                 </li>
+<!--                <li>-->
+<!--                    <label for="id"><span class="red-square"></span>아이디</label>-->
+<!--                    <button style="width: 95px;" class="form-button" onclick="checkID()" disabled>중복확인</button>-->
+<!--                    <input type="text" name="id" id="id" class="id" data-required="true" style="width: 250px;"-->
+<!--                           minlength="4" maxlength="16" placeholder="ID">-->
+<!--                    <span class="error-message" style="font-size: 12px; color: red;">※아이디 입력</span>-->
+<!--                </li>-->
+                <!-- <li>
+                    <label for="nick"><span class="red-square"></span>닉네임</label>
+                    <input type="text" id="nick" class="nick" name="nick" data-required="true" minlength="4"
+                        maxlength="16" placeholder="NickName">
+                    <span class="error-message" style="font-size: 12px; color: red;">※닉네임 입력</span>
+                </li> -->
                 <li>
-                    <label th:for="password"><span class="red-square"></span>비밀번호</label>
-                    <input type="password" th:field="*{password}" class="pw" id="pw" data-required="true" minlength="4"
+                    <label for="password"><span class="red-square"></span>비밀번호</label>
+                    <input type="password" name="password" class="password" id="password" data-required="true" minlength="4"
                            maxlength="16" placeholder="Password">
                     <span class="error-message" style="font-size: 12px; color: red;">※비밀번호 입력</span>
                 </li>
@@ -716,20 +731,27 @@
                       style="font-size: 12px; margin-left: 160px; color: red; letter-spacing: -0.5px;">
                         4글자 이상으로 비밀번호를 입력해주세요
                     </span>
-
                 <li>
-                    <label for="phone"><span class="red-square"></span>휴대폰</label>
+                    <label for="passwordchk"><span class="red-square"></span>비밀번호 확인</label>
+                    <input type="password" name="passwordchk" class="passwordchk" id="passwordchk" data-required="true" minlength="4"
+                           maxlength="16" placeholder="Password checked"> <span class="error-message"
+                                                                                style="font-size: 12px; color: red;">※비밀번호 입력</span>
+                    <span id="passwordMatchFeedback"
+                          style="font-size: 12px; margin-left: 160px; letter-spacing: -0.5px; color: red;"></span>
+                </li>
+                <li>
+                    <label for="phonenum"><span class="red-square"></span>휴대폰</label>
                     <button type="button" style="width: 95px;" class="form-button" disabled>인증번호받기</button>
-                    <input type="tel" name="phone" id="phone" data-required="true" style="width: 61px;"
-                           maxlength="3" oninput="moveFocus(event, 'phone2')" value="010" disabled> -
-                    <input type="tel" name="phone2" id="phone2" data-required="true" style="width: 76px;"
-                           maxlength="4" minlength="4" oninput="moveFocus(event, 'phone3')"> -
-                    <input type="tel" name="phone3" class="phone" id="phone3" data-required="true"
+                    <input type="tel" name="phonenum" id="phonenum" data-required="true" style="width: 61px;"
+                           maxlength="3" oninput="moveFocus(event, 'phonenum2')" value="010" disabled> -
+                    <input type="tel" name="phonenum2" id="phonenum2" data-required="true" style="width: 76px;"
+                           maxlength="4" minlength="4" oninput="moveFocus(event, 'phonenum3')"> -
+                    <input type="tel" name="phonenum3" class="phonenum" id="phonenum3" data-required="true"
                            style="width: 76px;" maxlength="4" minlength="4">
                     <span class="error-message" style="font-size: 12px; color: red;">※휴대전화 입력</span>
                 </li>
                 <li>
-                    <label th:for="mail"><span class="red-square"></span>이메일</label>
+                    <label for="email"><span class="red-square"></span>이메일</label>
                     <input type="email" name="email" class="email" id="email" data-required="true" minlength="8"
                            maxlength="50" placeholder="Email">
                     <span class="error-message" style="font-size: 12px; color: red;">※이메일 입력</span>
@@ -737,7 +759,7 @@
                 <span style="font-size: 12px; margin-left: 160px; letter-spacing: -0.5px;">아이디 또는 비밀번호 찾기에서
                         사용됩니다.</span>
                 <li>
-                    <label th:for="address"><span class="red-square"></span>주소</label>
+                    <label for="address1"><span class="red-square"></span>주소</label>
                     <input type="text" id="sample4_postcode" placeholder="우편번호" disabled style="width: 250px;"
                            data-required="true">
                     <button style="width: 95px; font-size: 12px;" type="button" onclick="sample4_execDaumPostcode()"
@@ -745,24 +767,100 @@
                     <input type="text" id="sample4_roadAddress" placeholder="도로명주소" disabled
                            style="margin-left: 156px;">
                 </li>
-                <li class="placeholder">
-                    <label th:for="address"><span class="red-square"></span>상세주소</label>
-                    <input type="text" class="address" id="sample4_detailAddress" placeholder="상세주소 입력"
-                           data-required="true" minlength="1" maxlength="32">
-                    <span class="error-message" style="font-size: 12px; color: red;">※상세주소
-                            입력</span>
-                </li>
-                <li style="display: none;">
-                    <label th:for="address"></label>
-                    <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-                    <span id="guide" style="color:#999;display:none"></span>
+<!--                <li class="placeholder">-->
+<!--                    <label for="address"><span class="red-square"></span>상세주소</label>-->
+<!--                    <input type="text" class="address" id="sample4_detailAddress" placeholder="상세주소 입력"-->
+<!--                           data-required="true" minlength="1" maxlength="32">-->
+<!--                    <span class="error-message" style="font-size: 12px; color: red;">※상세주소-->
+<!--                            입력</span>-->
+<!--                </li>-->
+<!--                <li style="display: none;">-->
+<!--                    <label for="address"></label>-->
+<!--                    <input type="text" id="sample4_jibunAddress" placeholder="지번주소">-->
+<!--                    <span id="guide" style="color:#999;display:none"></span>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <label for="message"></label>-->
+<!--                    <input type="text" id="sample4_extraAddress" placeholder="참고항목" disabled>-->
+<!--                </li>-->
+                <!-- <li>
+                    <label for="bank"><span class="red-square"></span>환불계좌</label>
+                    <select id="bankSelector" style="border-radius: 5px; border: none; background: #eee"
+                        class="form-button" data-required="true">
+                        <option value="" disabled selected style="background-color: #ccc;  font-weight: bold;">은행선택
+                        </option>
+                        <option value="국민은행">국민은행</option>
+                        <option value="부산은행">부산은행</option>
+                        <option value="신한은행">신한은행</option>
+                        <option value="우리은행">우리은행</option>
+                    </select>
+                    <input type="text" id="accountNumber" style="width: 250px;" placeholder="'-' 하이픈 제외, 숫자만 입력하세요"
+                        data-required="true" class="banknum">
+                    <span class="error-message" style="font-size: 12px; color: red; margin-left: 260px;">※계좌번호
+                        입력</span>
+                    <input type="text" id="accountName" style="margin-left: 156px;" placeholder="계좌실명을 입력하세요"
+                        data-required="true" class="bankname">
+                    <span class="error-message" style="font-size: 12px; color: red;">※계좌실명 입력</span>
                 </li>
                 <li>
-                    <label th:for="message"></label>
-                    <input type="text" id="sample4_extraAddress" placeholder="참고항목" disabled>
-                </li>
+                    <label for="bank">무통장 환불 방법</label>
+                    <input style="width: 20px;" type="radio" class="can" name="bank">
+                    <span>이머니로 환불받기</span>
+                    <input style="width: 20px;" type="radio" class="can" name="bank">
+                    <span>통장으로 받기</span>
+                    <div>
+                        <span id="mandatory-check-message"
+                            style="color: red; font-size: 12px; letter-spacing: -1px; margin-left: 165px; height: 0px;">※환불
+                            계좌 항목을 선택해 주세요</span>
+                        <span style="margin-top: 5px;"></span>
+                        <p style="font-size: 12px; letter-spacing: -1px; margin-left: 100px; margin-top: 10px;">
+                            ※이머니란? 이머니는 언제든지 현금화가
+                            가능한
+                            온라인 도서점의 가상머니입니다.</p>
+                    </div>
+                </li> -->
+                <!-- <li>
+                    <label for="id">추천인 아이디</label>
+                    <input type="text" id="id" style="width: 250px;" maxlength="16">
+                    <button style="width: 94px;" class="form-button">아이디 확인</button>
+                    <div style="width: 520px; margin-left: 90px; font-size: 14px; letter-spacing: -1px;">
+                        <p>*마일리지 유효기간은 30일입니다.<br>추천인 아이디가 없으면 입력하지 않으셔도 됩니다.</p>
+                    </div>
+                </li> -->
             </ul>
-
+            <div style="width: 515px; border: 1px solid #b6b6b6; margin-left: 65px; background-color: #e7e7e7; border-radius: 5px;"
+                 class="c-bottom">
+                <ul style="line-height: 30px;">
+                    <li style="margin-left: -220px;">
+                        <input type="checkbox" id="id_a" class="can checkbox all group-all" style="width: 1.2em;"
+                               name="allterms" id="allterms"><span
+                            style="margin-left: 172px; font-size: 17px; font-weight: bold;">이용약관 전체동의</span>
+                    </li>
+                    <hr class="b-bottom">
+                    <li style="margin-left: -220px;">
+                        <input type="checkbox" class="can checkbox normal individual-term"
+                               style="width: 1.2em;"><span style="margin-left: 172px;" name="terms1" id="terms1"
+                                                           data-required="true"><span
+                            style="color: red; font-size: 13px; font-weight: bold; ">[필수]</span>개인정보
+                                수집/이용안내</span> <span class="information">
+                                    <a href="#" id="openModalBtn">내용보기</a>
+                                </span>
+                    </li>
+                    <li style="margin-left: -220px;">
+                        <input type="checkbox" id="id_c" class="can checkbox normal individual-term"
+                               style="width: 1.2em;"><span style="margin-left: 172px;"><span
+                            style="color: red; font-size: 13px; font-weight: bold;">[필수]</span>개인정보
+                                3자제공</span><span class="information"><a href="#" style="left: 216px;" id="openModalBtn2">내용보기</a></span>
+                    </li>
+                    <li style="margin-left: -220px;">
+                        <input type="checkbox" class="can checkbox normal individual-term"
+                               style="width: 1.2em;"><span style="margin-left: 172px;"><span
+                            style="color: red; font-size: 13px; font-weight: bold;" name="terms2" id="terms2"
+                            data-required="true">[필수]</span>회원이용약관</span><span class="information"><a href="#"
+                                                                                                      style="left: 246px;" id="openModalBtn3">내용보기</a></span>
+                    </li>
+                </ul>
+            </div>
 
             <br><br>
             <div style="text-align: center;">
@@ -771,8 +869,33 @@
             </div>
         </div>
     </form>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="../rebook/image/1.jpg" alt="">
+        </div>
+    </div>
+    <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <span class="close2">&times;</span>
+            <img src="../rebook/image/2.jpg" alt="">
+        </div>
+    </div>
+    <div id="myModal3" class="modal">
+        <div class="modal-content">
+            <span class="close3">&times;</span>
+            <img src="../rebook/image/3.jpg" alt="">
+        </div>
+    </div>
 </div>
+<script>
+    function moveFocus(event, nextFieldId) {
+        if (event.target.value.length === event.target.maxLength) {
+            document.getElementById(nextFieldId).focus();
+        }
+    }
 
+</script>
 </body>
 
 </html>

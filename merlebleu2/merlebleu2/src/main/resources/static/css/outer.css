@@ -12,6 +12,11 @@
     text-align: center;
     border-radius: 4px;
     margin-bottom: 70px;
+    cursor: pointer;
+}
+
+.my-btn button:hover {
+   background-color: #90e7ff17;
 }
 
 .my-btn p {
@@ -305,7 +310,7 @@ body {
         transition: all 0.2s ease;
         text-align: center;
     }
-    
+
     .outer-link-wrap .outer-link-content ul a {
         text-decoration: none;
         color: rgb(0, 0, 0);
@@ -316,7 +321,7 @@ body {
     #sortOptions {
 
         margin-left: 450px;
-    
+
     }
 }
 
@@ -420,7 +425,7 @@ body {
         transition: all 0.2s ease;
         text-align: center;
     }
-    
+
     .outer-link-wrap .outer-link-content ul a {
         text-decoration: none;
         color: rgb(0, 0, 0);
@@ -431,7 +436,7 @@ body {
     #sortOptions {
 
         margin-left: 850px;
-    
+
     }
 }
 
@@ -519,7 +524,7 @@ body {
         margin: 0 45%;
         width: 250px;
         padding-top: 50px;
-        
+
     }
 
     .outer-link-wrap .outer-link-content ul li {
@@ -533,7 +538,7 @@ body {
         transition: all 0.2s ease;
         text-align: center;
     }
-    
+
     .outer-link-wrap .outer-link-content ul a {
         text-decoration: none;
         color: rgb(0, 0, 0);
