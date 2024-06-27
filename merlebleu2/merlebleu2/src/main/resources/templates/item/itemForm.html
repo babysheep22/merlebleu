@@ -78,11 +78,27 @@
 
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text">가격</span>
+                <span class="input-group-text">정가</span>
             </div>
-            <input type="number" th:field="*{price}" class="form-control" placeholder="상품의 가격을 입력해주세요">
+            <input type="number" th:field="*{listprice}" class="form-control" placeholder="상품의 가격을 입력해주세요">
         </div>
-        <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="fieldError">Incorrect data</p>
+        <p th:if="${#fields.hasErrors('listprice')}" th:errors="*{listprice}" class="fieldError">Incorrect data</p>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">판매가</span>
+            </div>
+            <input type="number" th:field="*{sellprice}" class="form-control" placeholder="상품의 가격을 입력해주세요">
+        </div>
+        <p th:if="${#fields.hasErrors('sellprice')}" th:errors="*{sellprice}" class="fieldError">Incorrect data</p>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">할인율</span>
+            </div>
+            <input type="number" th:field="*{discount}" class="form-control" placeholder="할인율%를 입력해주세요">
+        </div>
+        <p th:if="${#fields.hasErrors('discount')}" th:errors="*{discount}" class="fieldError">Incorrect data</p>
 
         <div class="input-group">
             <div class="input-group-prepend">
@@ -94,11 +110,19 @@
 
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text">상품 상세 내용</span>
+                <span class="input-group-text">상품 분류1</span>
             </div>
-            <textarea class="form-control" aria-label="With textarea" th:field="*{itemDetail}"></textarea>
+            <textarea class="form-control" aria-label="With textarea" th:field="*{category1}"></textarea>
         </div>
-        <p th:if="${#fields.hasErrors('itemDetail')}" th:errors="*{itemDetail}" class="fieldError">Incorrect data</p>
+        <p th:if="${#fields.hasErrors('category1')}" th:errors="*{category1}" class="fieldError">Incorrect data</p>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">상품 분류2</span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" th:field="*{category2}"></textarea>
+        </div>
+        <p th:if="${#fields.hasErrors('category2')}" th:errors="*{category2}" class="fieldError">Incorrect data</p>
 
         <div th:if="${#lists.isEmpty(itemFormDto.itemImgDtoList)}">
             <div class="form-group" th:each="num: ${#numbers.sequence(1,5)}">

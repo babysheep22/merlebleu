@@ -7,13 +7,14 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import com.example.merlebleu2.dto.ItemFormDto;
 
 @Table(name="item")
 @Entity
 @Getter
 @Setter
 @ToString
-public class Item {
+public class Item extends BaseEntity{
     
     @Id
     @Column(name="item_code")
@@ -49,6 +50,15 @@ public class Item {
     private LocalDateTime regTime;
     private LocalDateTime updateTime;
 
-    //대표상품 이미지 링크
-    //private Character mainimgurl;
+    //상품 업데이트 로직
+    public void updateItem(ItemFormDto itemFormDto){
+        this.itemNm = itemFormDto.getItemNm();
+        this.listprice = itemFormDto.getListprice();
+        this.sellprice = itemFormDto.getSellprice();
+        this.discount = itemFormDto.getDiscount();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.category1 = itemFormDto.getCategory1();
+        this.category2 = itemFormDto.getCategory2();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
 }

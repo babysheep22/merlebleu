@@ -25,14 +25,14 @@ public class SecurityConfig {
     @Bean //로그인, 로그아웃시 url설정
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.formLogin(form -> form
-                        .loginPage("/members/login")
-                        .defaultSuccessUrl("/")
-                        .usernameParameter("email")
+                        .loginPage("/members/login") //로그인 페이지주소
+                        .defaultSuccessUrl("/merlebleu/main"    ,true) //로그인 성공시 주소
+                        .usernameParameter("email") //로그인시 사용할 파라미터
                         .failureUrl("/members/login/error")
                 )
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/merlebleu/main")
                 );
 
         http.authorizeRequests(authorizeRequests -> authorizeRequests

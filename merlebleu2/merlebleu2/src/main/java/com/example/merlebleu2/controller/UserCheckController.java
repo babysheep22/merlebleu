@@ -1,0 +1,22 @@
+//package com.example.merlebleu2.controller;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RestController;
+//
+//@RestController
+//@RequestMapping
+//public class UserCheckController {
+//
+//    @Autowired
+//    private UserService userService;
+//
+//    @PostMapping("/checkEmailDuplicate")
+//    public boolean checkEmailDuplicate(@RequestParam("email") String email) {
+//        return userService.isEmailDuplicate(email);
+//    }
+//
+//
+//}
