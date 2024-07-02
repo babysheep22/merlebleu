@@ -58,7 +58,7 @@ public class ItemController {
             return "item/itemForm";
         }
 
-        return "/merlebleu/main"; //등록 후 메인페이지로
+        return "redirect:/merlebleu/main"; //등록 후 메인페이지로
     }
 
     @GetMapping(value = "/admin/item/{itemId}")

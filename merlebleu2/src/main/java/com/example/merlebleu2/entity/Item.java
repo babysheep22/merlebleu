@@ -16,13 +16,13 @@ import com.example.merlebleu2.dto.ItemFormDto;
 @Setter
 @ToString
 public class Item extends BaseEntity{
-    
+
     @Id
     @Column(name="item_code")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     //아이디
     private Long id;
-    
+
     @Column(nullable = false, length = 50)
     //상품이름
     private String itemNm;
@@ -34,11 +34,12 @@ public class Item extends BaseEntity{
     private Integer sellprice;
     @Column(nullable = false)
     private Integer discount;
-    
-    
+
+
+
     private int stockNumber; //재고수량
 
-    
+
     //카테고리
     @Column(nullable = false)
     private String category1;

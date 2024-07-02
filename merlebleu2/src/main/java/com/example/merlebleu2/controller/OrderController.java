@@ -65,7 +65,8 @@ public class OrderController {
         //결과값으로 생성된 주문 번호와 요청이 성공했다는 HTTP 응답 상태 코드를 반환합니다.
     }
 
-    @GetMapping(value = {"/orders", "/orders/{page}"})
+    //주문내역
+    @GetMapping(value = {"/orders", "/orders/{page}" , "/merlebleu/order-details"})
     public String orderHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model){
 
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 4);

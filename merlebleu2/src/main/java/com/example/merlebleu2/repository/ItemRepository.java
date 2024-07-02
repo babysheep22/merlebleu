@@ -2,12 +2,20 @@ package com.example.merlebleu2.repository;
 
 import com.example.merlebleu2.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import java.util.List;
-public interface ItemRepository extends JpaRepository<Item,Long>,
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+
+public interface ItemRepository extends JpaRepository<Item, Long>,
         QuerydslPredicateExecutor<Item>, ItemRepositoryCustom {
 
     List<Item> findByItemNm(String itemNm);
+
+    List<Item> findByCategory1(String category1);
+
 
 }
