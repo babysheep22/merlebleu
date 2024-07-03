@@ -33,7 +33,7 @@
                         <li><a href="#">기획전</a></li>
                         <li><a href="#">OUTLET</a></li>
                         <li><a href="#">HOT KEYWORD</a></li>
-                        <li><a href="/admin/main">매거진</a></li>
+                        <li><a href="/admin/main">관리자</a></li>
                     </ul>
                     <div class="cate_box4 cate_box_child9" onmouseover="cateHover('cate_box_child9')"
                          onmouseout="cateOut()">
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="box_cont_top_menu">
                                     <div class="nav_side_a">
-                                        <h3><a href="./search_outer#">아우터</a></h3>
+                                        <h3><a href="/merlebleu/search_outer#">아우터</a></h3>
                                         <ul>
                                             <li><a href="./outer-jacket#" style="width: 50px;">쟈켓</a></li>
                                             <li><a href="./outer-jumper#" style="width: 50px;">점퍼</a></li>
@@ -273,7 +273,7 @@
                                     <h3>전체보기</h3>
                                 </div>
                                 <div class="box_cont_menu">
-                                    <h3><a href="./search_outer#">아우터</a></h3>
+                                    <h3><a href="/merlebleu/search_outer#">아우터</a></h3>
                                     <ul>
                                         <li><a href="./outer-jacket#" style="width: 30px;">쟈켓</a></li>
                                         <li><a href="./outer-jumper#" style="width: 30px;">점퍼</a></li>
@@ -403,7 +403,7 @@
                         <div class="kategory">
                             <ul>
                                 <h3>카테고리 검색</h3>
-                                <li><a href="./search_outer#">#아우터</a></li>
+                                <li><a href="/merlebleu/search_outer#">#아우터</a></li>
                                 <li><a href="./search_top#">#탑</a></li>
                                 <li><a href="./search_skirt#">#스커트</a></li>
                                 <li><a href="./search_pants#">#팬츠</a></li>
@@ -518,7 +518,7 @@
                 <div class="slide_inner">
                     <div class="slide_img js-transition-img">
                         <figure class="js-transition-img_inner">
-                            <a href=""><img class="scroll-area" th:src="${item.imgUrl}" draggable="false"
+                            <a th:href="'/item/' +${item.id}"><img class="scroll-area" th:src="${item.imgUrl}" draggable="false"
                                             onmousedown="startDrag(event)"></a>
                             <p class="item_name" th:text="${item.itemNm}"></p>
                             <p class="item_price" th:text="${item.sellprice + '원'}"></p>
@@ -555,7 +555,7 @@
                 <div class="slide_inner">
                     <div class="slide_img js-transition-img">
                         <figure class="js-transition-img_inner">
-                            <a href=""><img class="scroll-area" th:src="${item.imgUrl}" draggable="false"
+                            <a th:href="'/item/'+${item.id}"><img class="scroll-area" th:src="${item.imgUrl}" draggable="false"
                                             onmousedown="startDrag(event)"></a>
                             <p class="item_name" th:text="${item.itemNm}"></p>
                             <p class="item_price" th:text="${item.sellprice + '원'}"></p>

@@ -1,5 +1,6 @@
 package com.example.merlebleu2.controller;
 
+import com.example.merlebleu2.dto.MainItemDto;
 import com.example.merlebleu2.service.ItemService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,6 @@ import java.util.Optional;
 public class ItemController {
 
     private final ItemService itemService;
-
     @GetMapping(value = "/admin/item/new")
     public String itemForm(Model model){
         model.addAttribute("itemFormDto", new ItemFormDto());
@@ -58,7 +58,7 @@ public class ItemController {
             return "item/itemForm";
         }
 
-        return "redirect:/merlebleu/main"; //등록 후 메인페이지로
+        return "redirect:/admin/item/new"; //등록 후 메인페이지로
     }
 
     @GetMapping(value = "/admin/item/{itemId}")
@@ -128,5 +128,92 @@ public class ItemController {
         model.addAttribute("item", itemFormDto);
         return "item/itemDtl";
     }
+
+    @GetMapping("/merlebleu/search_outer")
+    public String getItemsByOuterCategory(@RequestParam(value = "category1", defaultValue = "아우터") String category1,
+                                          @RequestParam(value = "category2", required = false) String category2,
+                                          ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodList/search_outer";
+    }
+
+    @GetMapping("/merlebleu/search_top")
+    public String getItemsByTopCategory(@RequestParam(value = "category1", defaultValue = "탑") String category1,
+                                          @RequestParam(value = "category2", required = false) String category2,
+                                          ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodList/search_top";
+    }
+
+    @GetMapping("/merlebleu/search_skirt")
+    public String getItemsBySkirtCategory(@RequestParam(value = "category1", defaultValue = "스커트") String category1,
+                                        @RequestParam(value = "category2", required = false) String category2,
+                                        ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodList/search_skirt";
+    }
+
+    @GetMapping("/merlebleu/search_pants")
+    public String getItemsByPantsCategory(@RequestParam(value = "category1", defaultValue = "팬츠") String category1,
+                                          @RequestParam(value = "category2", required = false) String category2,
+                                          ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodList/search_pants";
+    }
+
+    @GetMapping("/merlebleu/search_onpiece")
+    public String getItemsByOnepiecesCategory(@RequestParam(value = "category1", defaultValue = "원피스") String category1,
+                                          @RequestParam(value = "category2", required = false) String category2,
+                                          ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodList/search_onpiece";
+    }
+
+    @GetMapping("/merlebleu/search_stuff")
+    public String getItemsByStuffCategory(@RequestParam(value = "category1", defaultValue = "패션잡화") String category1,
+                                              @RequestParam(value = "category2", required = false) String category2,
+                                              ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodList/search_stuff";
+    }
+
+    //카테고리1 끝
+
 
 }

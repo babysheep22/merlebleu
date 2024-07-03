@@ -31,7 +31,7 @@ public class ItemImgService {
         if(!StringUtils.isEmpty(oriImgName)){
             imgName = fileService.uploadFile(itemImgLocation, oriImgName,
                     itemImgFile.getBytes());
-            imgUrl = "C:/Apache24/htdocs/item/" + imgName;
+            imgUrl = "http://192.168.106.24/item/" + imgName;
         }
 
         //상품 이미지 정보 저장
@@ -39,6 +39,7 @@ public class ItemImgService {
         itemImgRepository.save(itemImg);
     }
 
+    //상품 이미지 수정
     public void updateItemImg(Long itemImgId, MultipartFile itemImgFile) throws Exception{
         if(!itemImgFile.isEmpty()){
             ItemImg savedItemImg = itemImgRepository.findById(itemImgId)
@@ -52,7 +53,7 @@ public class ItemImgService {
 
             String oriImgName = itemImgFile.getOriginalFilename();
             String imgName = fileService.uploadFile(itemImgLocation, oriImgName, itemImgFile.getBytes());
-            String imgUrl = "C:/Apache24/htdocs/item/" + imgName;
+            String imgUrl = "http://192.168.106.24/item/" + imgName;
             savedItemImg.updateItemImg(oriImgName, imgName, imgUrl);
         }
     }

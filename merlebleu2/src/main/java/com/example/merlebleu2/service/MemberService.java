@@ -20,7 +20,7 @@ public class MemberService implements UserDetailsService{
 
     private final MemberRepository memberRepository;
 
-    public Member saveMember(Member member){
+    public Member saveMember(Member member){ //멤버 저장
         validateDuplicateMember(member);
         return memberRepository.save(member);
     }
@@ -48,4 +48,9 @@ public class MemberService implements UserDetailsService{
                 .roles(member.getRole().toString())
                 .build();
     }
+
+    //
+//    public Member isEmailDuplicate(email){
+//
+//    }
 }

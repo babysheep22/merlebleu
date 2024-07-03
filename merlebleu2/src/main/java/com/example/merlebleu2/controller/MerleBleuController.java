@@ -19,47 +19,47 @@ public class MerleBleuController {
 
 
 
-    //상품 목록 outer 경로
-    @GetMapping(value = "/search_outer")
-    public String merlbleusearchouter(Model model) {
-        return "MerleBleu/prod/prodList/search_outer.html";
-    }
+//    //상품 목록 outer 경로
+//    @GetMapping(value = "/search_outer")
+//    public String merlbleusearchouter(Model model) {
+//        return "MerleBleu/prod/prodList/search_outer.html";
+//    }
 
 
     //상품 목록 top 경로
 
-    @GetMapping(value = "/search_top")
-    public String marlbleusearchtop(Model model) {
-        return "MerleBleu/prod/prodList/search_top.html";
-    }
-
-
-    //상품 목록  skirt 경로
-
-    @GetMapping(value = "/search_skirt")
-    public String marlbleusearchskirt(Model model) {
-        return "MerleBleu/prod/prodList/search_skirt.html";
-    }
-
-
-//상품 목록 pants 경로
-
-    @GetMapping(value = "/search_pants")
-    public String marlbleusearchpants(Model model) {
-        return "MerleBleu/prod/prodList/search_pants.html";
-    }
-
-    //상품 목록 onepiece 경로
-
-    @GetMapping(value = "/search_onepiece")
-    public String marlbleusearchonepiece(Model model) { return  "MerleBleu/prod/prodList/search_onepiece.html";}
-
-
-    //상품 목록 stuff 경로
-    @GetMapping(value = "/search_stuff")
-    public String merlbleusearchstuff(Model model) {
-        return "MerleBleu/prod/prodList/search_stuff.html";
-    }
+//    @GetMapping(value = "/search_top")
+//    public String marlbleusearchtop(Model model) {
+//        return "MerleBleu/prod/prodList/search_top.html";
+//    }
+//
+//
+//    //상품 목록  skirt 경로
+//
+//    @GetMapping(value = "/search_skirt")
+//    public String marlbleusearchskirt(Model model) {
+//        return "MerleBleu/prod/prodList/search_skirt.html";
+//    }
+//
+//
+////상품 목록 pants 경로
+//
+//    @GetMapping(value = "/search_pants")
+//    public String marlbleusearchpants(Model model) {
+//        return "MerleBleu/prod/prodList/search_pants.html";
+//    }
+//
+//    //상품 목록 onepiece 경로
+//
+//    @GetMapping(value = "/search_onepiece")
+//    public String marlbleusearchonepiece(Model model) { return  "MerleBleu/prod/prodList/search_onepiece.html";}
+//
+//
+//    //상품 목록 stuff 경로
+//    @GetMapping(value = "/search_stuff")
+//    public String merlbleusearchstuff(Model model) {
+//        return "MerleBleu/prod/prodList/search_stuff.html";
+//    }
 
 
 

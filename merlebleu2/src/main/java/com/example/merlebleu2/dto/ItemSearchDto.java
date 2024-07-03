@@ -15,5 +15,8 @@ public class ItemSearchDto {
 
     private String searchQuery= "";
 
+    private String category1;
+    private String category2;
+
 
 }

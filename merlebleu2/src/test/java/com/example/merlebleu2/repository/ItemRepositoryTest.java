@@ -57,4 +57,21 @@ class ItemRepositoryTest {
         }
     }
 
+    public void findByCategory1(){
+        this.createItemList();
+        List<Item> itemList = itemRepository.findByCategory1("의류1");
+        for(Item item : itemList){
+            System.out.println(item.toString());
+        }
+    }
+
+    public void findByCategory2(){
+        this.createItemList();
+        List<Item> itemList = itemRepository.findByCategory2("아우터");
+        for(Item item : itemList){
+            System.out.println(item.toString());
+        }
+    }
+
+
 }

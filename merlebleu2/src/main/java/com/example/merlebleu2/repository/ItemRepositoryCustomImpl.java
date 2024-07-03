@@ -68,6 +68,14 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom {
         return null;
     }
 
+    private BooleanExpression category1Eq(String category1) {
+        return StringUtils.isEmpty(category1) ? null : QItem.item.category1.eq(category1);
+    }
+
+    private BooleanExpression category2Eq(String category2) {
+        return StringUtils.isEmpty(category2) ? null : QItem.item.category2.eq(category2);
+    }
+
     @Override
     public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
 
@@ -124,9 +132,10 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom {
                 .from(itemImg)
                 .join(itemImg.item, item)
                 .where(itemImg.repimgYn.eq("Y"))
-                .where(itemNmLike(itemSearchDto.getSearchQuery()))
-                .fetchOne()
-                ;
+                .where(itemNmLike(itemSearchDto.getSearchQuery()),
+                        category1Eq(itemSearchDto.getCategory1()),
+                        category2Eq(itemSearchDto.getCategory2()))
+                .fetchOne();
 
         return new PageImpl<>(content, pageable, total);
     }
