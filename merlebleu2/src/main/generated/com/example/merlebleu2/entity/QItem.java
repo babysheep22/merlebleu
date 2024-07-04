@@ -41,13 +41,15 @@ public class QItem extends EntityPathBase<Item> {
     //inherited
     public final StringPath modifiedBy = _super.modifiedBy;
 
-    public final DateTimePath<java.time.LocalDateTime> regTime = createDateTime("regTime", java.time.LocalDateTime.class);
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> regTime = _super.regTime;
 
     public final NumberPath<Integer> sellprice = createNumber("sellprice", Integer.class);
 
     public final NumberPath<Integer> stockNumber = createNumber("stockNumber", Integer.class);
 
-    public final DateTimePath<java.time.LocalDateTime> updateTime = createDateTime("updateTime", java.time.LocalDateTime.class);
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updateTime = _super.updateTime;
 
     public QItem(String variable) {
         super(Item.class, forVariable(variable));

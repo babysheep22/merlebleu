@@ -138,6 +138,7 @@ public class ItemController {
 
         Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
 
+        model.addAttribute("items", items.getContent());
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);
         return "MerleBleu/prod/prodList/search_outer";
@@ -152,6 +153,7 @@ public class ItemController {
 
         Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
 
+        model.addAttribute("items", items.getContent());
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);
         return "MerleBleu/prod/prodList/search_top";
@@ -166,6 +168,7 @@ public class ItemController {
 
         Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
 
+        model.addAttribute("items", items.getContent());
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);
         return "MerleBleu/prod/prodList/search_skirt";
@@ -180,12 +183,13 @@ public class ItemController {
 
         Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
 
+        model.addAttribute("items", items.getContent());
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);
         return "MerleBleu/prod/prodList/search_pants";
     }
 
-    @GetMapping("/merlebleu/search_onpiece")
+    @GetMapping("/merlebleu/search_onepiece")
     public String getItemsByOnepiecesCategory(@RequestParam(value = "category1", defaultValue = "원피스") String category1,
                                           @RequestParam(value = "category2", required = false) String category2,
                                           ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
@@ -194,9 +198,10 @@ public class ItemController {
 
         Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
 
+        model.addAttribute("items", items.getContent());
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);
-        return "MerleBleu/prod/prodList/search_onpiece";
+        return "MerleBleu/prod/prodList/search_onepiece";
     }
 
     @GetMapping("/merlebleu/search_stuff")
@@ -208,6 +213,7 @@ public class ItemController {
 
         Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
 
+        model.addAttribute("items", items.getContent());
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);
         return "MerleBleu/prod/prodList/search_stuff";
