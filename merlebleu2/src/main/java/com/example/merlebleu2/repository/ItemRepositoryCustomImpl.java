@@ -121,7 +121,8 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom {
                 .from(itemImg)
                 .join(itemImg.item, item) //imemimg와 item을 내부 조인
                 .where(itemImg.repimgYn.eq("Y")) //상품 이미지의 경우 대표 상품 이미지만 불러옵니다.
-                .where(category1Eq(itemSearchDto.getCategory1())) // 추가된 부분
+                .where(category1Eq(itemSearchDto.getCategory1()))
+                .where(category2Eq(itemSearchDto.getCategory2()))// 추가된 부분
                 .where(itemNmLike(itemSearchDto.getSearchQuery()))
                 .orderBy(item.id.desc())
                 .offset(pageable.getOffset())
@@ -133,8 +134,9 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom {
                 .from(itemImg)
                 .join(itemImg.item, item)
                 .where(itemImg.repimgYn.eq("Y"))
-                .where(category1Eq(itemSearchDto.getCategory1())) // 추가된 부분
-                .where(itemNmLike(itemSearchDto.getSearchQuery()))
+                .where(itemNmLike(itemSearchDto.getSearchQuery()),
+                        category1Eq(itemSearchDto.getCategory1()), // 수정된 부분: category1 필터 추가
+                        category2Eq(itemSearchDto.getCategory2())) // 수정된 부분: category2 필터 추가
                 .fetchOne();
 
         return new PageImpl<>(content, pageable, total);

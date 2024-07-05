@@ -221,5 +221,234 @@ public class ItemController {
 
     //카테고리1 끝
 
+    //카테고리2 목록페이지 시작
+    @GetMapping("/merlebleu/outer-jacket") //쟈켓
+    public String getItemsByJacketCategory(@RequestParam(value = "category1", defaultValue = "아우터") String category1,
+                                          @RequestParam(value = "category2", defaultValue = "쟈켓") String category2,
+                                          ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
 
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/outer-jacket";
+    }
+
+    @GetMapping("/merlebleu/outer-coat") //코트
+    public String getItemsByCoatCategory(@RequestParam(value = "category1", defaultValue = "아우터") String category1,
+                                           @RequestParam(value = "category2", defaultValue = "코트") String category2,
+                                           ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/outer-coat";
+    }
+
+    @GetMapping("/merlebleu/outer-trench-coat") //트렌치코트
+    public String getItemsByTrenchCoatCategory(@RequestParam(value = "category1", defaultValue = "아우터") String category1,
+                                         @RequestParam(value = "category2", defaultValue = "트렌치코트") String category2,
+                                         ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/outer-coat";
+    }
+
+        @GetMapping("/merlebleu/outer-jumper") //점퍼
+        public String getItemsByJumperCategory(@RequestParam(value = "category1", defaultValue = "아우터") String category1,
+                                        @RequestParam(value = "category2", defaultValue = "점퍼") String category2,
+                                        ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+            itemSearchDto.setCategory1(category1);
+            itemSearchDto.setCategory2(category2);
+
+            Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+            model.addAttribute("items", items.getContent());
+            model.addAttribute("items", items);
+            model.addAttribute("itemSearchDto", itemSearchDto);
+            return "MerleBleu/prod/prodDetail/outer-jumper";
+    }
+
+    @GetMapping("/merlebleu/outer-padding") //다운/패딩
+    public String getItemsByPaddingCategory(@RequestParam(value = "category1", defaultValue = "아우터") String category1,
+                                           @RequestParam(value = "category2", defaultValue = "다운/패딩") String category2,
+                                           ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/outer-jumper";
+    }
+
+    @GetMapping("/merlebleu/outer-mustang") //무스탕/퍼
+    public String getItemsByMustangCategory(@RequestParam(value = "category1", defaultValue = "아우터") String category1,
+                                            @RequestParam(value = "category2", defaultValue = "무스탕") String category2,
+                                            ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/outer-mustang";
+    }
+
+    @GetMapping("/merlebleu/outer-cardigan") //무스탕/퍼
+    public String getItemsByCardiganCategory(@RequestParam(value = "category1", defaultValue = "아우터") String category1,
+                                            @RequestParam(value = "category2", defaultValue = "가디건") String category2,
+                                            ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/outer-cardigan";
+    }
+
+    //아우터 끝
+    // 탑 시작
+    @GetMapping("/merlebleu/top-shirt") //블라우스/셔츠
+    public String getItemsByShirtCategory(@RequestParam(value = "category1", defaultValue = "탑") String category1,
+                                             @RequestParam(value = "category2", defaultValue = "블라우스/셔츠") String category2,
+                                             ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/top-shirt";
+    }
+
+    @GetMapping("/merlebleu/top-tshirt") //티셔츠
+    public String getItemsByThirtCategory(@RequestParam(value = "category1", defaultValue = "탑") String category1,
+                                          @RequestParam(value = "category2", defaultValue = "티셔츠") String category2,
+                                          ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/top-tshirt";
+    }
+
+    @GetMapping("/merlebleu/top-sleeveless") //슬리브리스
+    public String getItemsBySleeveCategory(@RequestParam(value = "category1", defaultValue = "탑") String category1,
+                                          @RequestParam(value = "category2", defaultValue = "슬리브리스") String category2,
+                                          ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/top-sleeveless";
+    }
+
+    @GetMapping("/merlebleu/top-neat") //니트
+    public String getItemsByNeatCategory(@RequestParam(value = "category1", defaultValue = "탑") String category1,
+                                           @RequestParam(value = "category2", defaultValue = "니트") String category2,
+                                           ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/top-neat";
+    }
+
+    //탑 끝
+
+    //스커트 상세 분류 시작
+    @GetMapping("/merlebleu/skirt-mini") //미니 스커트
+    public String getItemsByMiniCategory(@RequestParam(value = "category1", defaultValue = "스커트") String category1,
+                                         @RequestParam(value = "category2", defaultValue = "미니") String category2,
+                                         ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/skirt-mini";
+    }
+
+    @GetMapping("/merlebleu/skirt-flare") //플레어
+    public String getItemsByFlareCategory(@RequestParam(value = "category1", defaultValue = "스커트") String category1,
+                                         @RequestParam(value = "category2", defaultValue = "플레어") String category2,
+                                         ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/skirt-flare";
+    }
+
+    @GetMapping("/merlebleu/skirt-pencil") //펜슬
+    public String getItemsByPencilCategory(@RequestParam(value = "category1", defaultValue = "스커트") String category1,
+                                          @RequestParam(value = "category2", defaultValue = "펜슬") String category2,
+                                          ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/skirt-pencil";
+    }
+
+    @GetMapping("/merlebleu/skirt-denim") //펜슬
+    public String getItemsByDenimCategory(@RequestParam(value = "category1", defaultValue = "스커트") String category1,
+                                           @RequestParam(value = "category2", defaultValue = "데님") String category2,
+                                           ItemSearchDto itemSearchDto, Pageable pageable, Model model) {
+        itemSearchDto.setCategory1(category1);
+        itemSearchDto.setCategory2(category2);
+
+        Page<MainItemDto> items = itemService.getItemsByCategory(itemSearchDto, pageable);
+
+        model.addAttribute("items", items.getContent());
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        return "MerleBleu/prod/prodDetail/skirt-denim";
+    }
 }
