@@ -94,7 +94,7 @@
     <div th:each="order : ${orders.getContent()}">
 
         <div class="d-flex mb-3 align-self-center">
-            <h4 th:text="${order.orderDate} + ' 주문'"></h4>
+            <h3 th:text="${order.orderDate} + ' 주문'"></h3>
             <div class="ml-3">
                 <th:block th:if="${order.orderStatus == T(com.example.merlebleu2.constant.OrderStatus).ORDER}">
                     <button type="button" class="btn btn-outline-secondary" th:value="${order.orderId}" onclick="cancelOrder(this.value)">주문취소</button>

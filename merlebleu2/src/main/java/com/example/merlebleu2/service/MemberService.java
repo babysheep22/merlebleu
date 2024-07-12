@@ -1,5 +1,6 @@
 package com.example.merlebleu2.service;
 
+import com.example.merlebleu2.dto.MemberFormDto;
 import com.example.merlebleu2.entity.Member;
 import com.example.merlebleu2.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +48,24 @@ public class MemberService implements UserDetailsService{
                 .password(member.getPassword())
                 .roles(member.getRole().toString())
                 .build();
+    }
+
+    public MemberFormDto getMemberInfo(String email) {
+        Member member = memberRepository.findByEmail(email);
+        if (member == null) {
+            throw new IllegalStateException("회원 정보를 찾을 수 없습니다.");
+        }
+
+        //회원 정보 가져오기
+        MemberFormDto memberFormDto = new MemberFormDto();
+        memberFormDto.setEmail(member.getEmail());
+        memberFormDto.setName(member.getName());
+        memberFormDto.setPhonenum(member.getPhonenum());
+        memberFormDto.setPostcode(member.getPostcode());
+        memberFormDto.setAddress1(member.getAddress1());
+        memberFormDto.setAddress2(member.getAddress2());
+
+        return memberFormDto;
     }
 
     //

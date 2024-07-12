@@ -28,6 +28,7 @@ public class MemberController {
     public String memberForm(Model model){
         model.addAttribute("memberFormDto", new MemberFormDto());
         return "member/memberForm";
+//        return "MerleBleu/member/join";
     }
 
 
@@ -35,6 +36,7 @@ public class MemberController {
     public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "member/memberForm";
+//            return "MerleBleu/member/join";
         }
 
         try {
@@ -43,6 +45,7 @@ public class MemberController {
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
             return "member/memberForm";
+//            return "MerleBleu/member/join";
         }
 
         return "redirect:/main";

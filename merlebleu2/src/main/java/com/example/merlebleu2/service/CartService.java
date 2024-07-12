@@ -3,14 +3,8 @@ package com.example.merlebleu2.service;
 import com.example.merlebleu2.dto.CartDetailDto;
 import com.example.merlebleu2.dto.CartItemDto;
 import com.example.merlebleu2.dto.CartOrderDto;
-import com.example.merlebleu2.entity.Cart;
-import com.example.merlebleu2.entity.CartItem;
-import com.example.merlebleu2.entity.Item;
-import com.example.merlebleu2.entity.Member;
-import com.example.merlebleu2.repository.CartItemRepository;
-import com.example.merlebleu2.repository.CartRepository;
-import com.example.merlebleu2.repository.ItemRepository;
-import com.example.merlebleu2.repository.MemberRepository;
+import com.example.merlebleu2.entity.*;
+import com.example.merlebleu2.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +26,7 @@ public class CartService {
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
     private final OrderService orderService;
+    private final OrderRepository orderRepository;
 
     //장바구니 추가
     public Long addCart(CartItemDto cartItemDto, String email) {
@@ -65,7 +60,8 @@ public class CartService {
         List<CartDetailDto> cartDetailDtoList = new ArrayList<>();
 
         Member member = memberRepository.findByEmail(email);
-        Cart cart = cartRepository.findByMemberId(member.getId());
+        Cart cart = cartRepository.
+                findByMemberId(member.getId());
         if (cart == null) {
             return cartDetailDtoList;
         }
@@ -102,7 +98,31 @@ public class CartService {
         cartItemRepository.delete(cartItem);
     }
 
-    public Long orderCartItem(List< CartOrderDto> cartOrderDtoList, String email) {
+
+
+    public List<Long> orderCartItems(List<CartOrderDto> cartOrderDtoList, String email, String phonenum, Integer postcode, String address1, String address2, String paymentMethod) {
+        List<Long> orderIdList = new ArrayList<>();
+
+        Member member = memberRepository.findByEmail(email);
+
+        for (CartOrderDto cartOrderDto : cartOrderDtoList) {
+            OrderItem orderItem = new OrderItem();
+            orderItem.setItem(itemRepository.findById(cartOrderDto.getCartItemId()).orElseThrow(EntityNotFoundException::new));
+            orderItem.setCount(cartOrderDto.getCount());
+
+            List<OrderItem> orderItemList = new ArrayList<>();
+            orderItemList.add(orderItem);
+
+            Order order = Order.createOrder(member, orderItemList, phonenum, postcode, address1, address2, paymentMethod);
+            orderRepository.save(order);
+
+            orderIdList.add(order.getId());
+        }
+
+        return orderIdList;
+    }
+
+    public Long orderCartItem(List<CartOrderDto> cartOrderDtoList, String email){
         List<OrderDto> orderDtoList = new ArrayList<>();
 
         for (CartOrderDto cartOrderDto : cartOrderDtoList) {
@@ -126,5 +146,8 @@ public class CartService {
 
         return orderId;
     }
+
+
+
 }
 

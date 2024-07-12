@@ -23,14 +23,14 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath address1 = createString("address1");
 
+    public final StringPath address2 = createString("address2");
+
     //inherited
     public final StringPath createdBy = _super.createdBy;
 
     public final StringPath email = createString("email");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
-
-    public final StringPath milage = createString("milage");
 
     //inherited
     public final StringPath modifiedBy = _super.modifiedBy;
@@ -40,6 +40,8 @@ public class QMember extends EntityPathBase<Member> {
     public final StringPath password = createString("password");
 
     public final StringPath phonenum = createString("phonenum");
+
+    public final NumberPath<Integer> postcode = createNumber("postcode", Integer.class);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> regTime = _super.regTime;

@@ -1,6 +1,7 @@
 package com.example.merlebleu2.repository;
 
 import com.example.merlebleu2.dto.CartDetailDto;
+import com.example.merlebleu2.dto.CartOrderDto;
 import com.example.merlebleu2.entity.CartItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -19,4 +20,12 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
             "order by ci.regTime desc"
     )
     List<CartDetailDto> findCartDetailDtoList(@Param("cartId")Long cartId);
+
+    @Query("select new com.example.merlebleu2.dto.CartOrderDto(ci.id, i.itemNm, ci.count, i.sellprice) " +
+            "from CartItem ci " +
+            "join ci.item i " +
+            "where ci.id in :cartItemIds")
+    List<CartOrderDto> findCartOrderDtoList(@Param("cartItemIds") List<Long> cartItemIds);
+
+    List<CartItem> findByIdIn(List<Long> cartItemIds);
 }

@@ -36,13 +36,17 @@ public class SecurityConfig {
                 );
 
         http.authorizeRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/", "/shop/**" ,"/image/**" ,"/images/**","/members/**", "/item/**", "/img/**", "/css/**", "/js/**", "/MerlBleu/**" , "/merlebleu/**", "/main/**").permitAll()  // 모든 사용자가 인증 없이 접근 가능한 페이지
+                        .requestMatchers("/", "/shop/**" ,"/cart/**","/order/**","/image/**" ,"/images/**","/members/**", "/item/**", "/img/**", "/css/**", "/js/**", "/MerlBleu/**" , "/merlebleu/**", "/main/**").permitAll()  // 모든 사용자가 인증 없이 접근 가능한 페이지
                         .requestMatchers("/admin/**").hasRole("ADMIN")  // /admin으로 시작하는 경로에 ADMIN Role만 접근 가능하게 설정
                         .anyRequest().authenticated()  // 나머지 요청은 인증 필요
                 )
                 .exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint(new CustomAuthenticationEntryPoint())  // 인증되지 않은 사용자가 리소스 접근 시 사용되는 핸들러 등록
                 );
+
+        http.csrf(csrf -> csrf
+                .ignoringRequestMatchers("/h2-console/**") // H2 콘솔을 사용하는 경우 CSRF 무시
+        );
         return http.build();
     }
 

@@ -30,8 +30,12 @@ public class MemberFormDto {
     @NotEmpty(message = "주소는 필수 입력 값입니다.")
     private String address1;
     //상세주소
-    //private String address2;
+    @NotEmpty(message = "주소는 필수 입력 값입니다.")
+    private String address2;
+    //우편번호
+    private Integer postcode;
+
     //마일리지
-    private String milage;
+   // private String milage;
 
 }

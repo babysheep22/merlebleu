@@ -13,4 +13,7 @@ public class CartOrderDto {
 
     private List<CartOrderDto> cartOrderDtoList;
 
+    private List<CartOrderItemDto> cartOrderItemDtoList;
+
+    public Integer count;
 }

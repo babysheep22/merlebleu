@@ -12,10 +12,9 @@
 <th:block layout:fragment="script">
     <script th:inline="javascript">
         $(document).ready(function(){
-
             calculateToalPrice();
 
-            $("#count").change( function(){
+            $("#count").change(function(){
                 calculateToalPrice();
             });
         });
@@ -23,48 +22,30 @@
         function calculateToalPrice(){
             var count = $("#count").val();
             var price = $("#price").val();
-            var totalPrice = price*count;
+            var totalPrice = price * count;
             $("#totalPrice").html(totalPrice + '원');
         }
 
         function order(){
-            var token = $("meta[name='_csrf']").attr("content");
-            var header = $("meta[name='_csrf_header']").attr("content");
+            var url = "/order/payment";
+            var form = $('<form></form>').attr({
+                action: url,
+                method: 'get'
+            }).appendTo('body');
 
-            var url = "/order";
-            var paramData = {
-                itemId : $("#itemId").val(),
-                count : $("#count").val()
-            };
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'itemId',
+                value: $("#itemId").val()
+            }).appendTo(form);
 
-            var param = JSON.stringify(paramData);
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'count',
+                value: $("#count").val()
+            }).appendTo(form);
 
-            $.ajax({
-                url      : url,
-                type     : "POST",
-                contentType : "application/json",
-                data     : param,
-                beforeSend : function(xhr){
-                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
-                    xhr.setRequestHeader(header, token);
-                },
-                dataType : "json",
-                cache   : false,
-                success  : function(result, status){
-                    alert("주문이 완료 되었습니다.");
-                    location.reload();
-                },
-                error : function(jqXHR, status, error){
-
-                    if(jqXHR.status == '401'){
-                        alert('로그인 후 이용해주세요');
-                        location.href='/members/login';
-                    } else{
-                        alert(jqXHR.responseText);
-                    }
-
-                }
-            });
+            form.submit();
         }
 
         function addCart(){
@@ -95,18 +76,15 @@
                     location.reload();
                 },
                 error : function(jqXHR, status, error){
-
                     if(jqXHR.status == '401'){
                         alert('로그인 후 이용해주세요');
                         location.href='/members/login';
                     } else{
                         alert(jqXHR.responseText);
                     }
-
                 }
             });
         }
-
     </script>
 </th:block>
 
@@ -144,13 +122,13 @@
 
     <div class="d-flex">
         <div class="repImgDiv">
-            <img th:src="${item.itemImgDtoList[0].imgUrl}" class = "rounded repImg" th:alt="${item.itemNm}">
+            <img th:src="${item.itemImgDtoList[0].imgUrl}" class="rounded repImg" th:alt="${item.itemNm}">
         </div>
         <div class="wd50">
             <span th:if="${item.itemSellStatus == T(com.example.merlebleu2.constant.ItemSellStatus).SELL}" class="badge badge-primary mgb-15">
                 판매중
             </span>
-            <span th:unless="${item.itemSellStatus == T(com.example.merlebleu2.constant.ItemSellStatus).SELL}" class="badge btn-danger mgb-15" >
+            <span th:unless="${item.itemSellStatus == T(com.example.merlebleu2.constant.ItemSellStatus).SELL}" class="badge btn-danger mgb-15">
                 품절
             </span>
             <div class="h4" th:text="${item.itemNm}"></div>
