@@ -100,29 +100,8 @@ public class CartService {
 
 
 
-    public List<Long> orderCartItems(List<CartOrderDto> cartOrderDtoList, String email, String phonenum, Integer postcode, String address1, String address2, String paymentMethod) {
-        List<Long> orderIdList = new ArrayList<>();
 
-        Member member = memberRepository.findByEmail(email);
-
-        for (CartOrderDto cartOrderDto : cartOrderDtoList) {
-            OrderItem orderItem = new OrderItem();
-            orderItem.setItem(itemRepository.findById(cartOrderDto.getCartItemId()).orElseThrow(EntityNotFoundException::new));
-            orderItem.setCount(cartOrderDto.getCount());
-
-            List<OrderItem> orderItemList = new ArrayList<>();
-            orderItemList.add(orderItem);
-
-            Order order = Order.createOrder(member, orderItemList, phonenum, postcode, address1, address2, paymentMethod);
-            orderRepository.save(order);
-
-            orderIdList.add(order.getId());
-        }
-
-        return orderIdList;
-    }
-
-    public Long orderCartItem(List<CartOrderDto> cartOrderDtoList, String email){
+    public Long orderCartItem(List<CartOrderDto> cartOrderDtoList, String email) {
         List<OrderDto> orderDtoList = new ArrayList<>();
 
         for (CartOrderDto cartOrderDto : cartOrderDtoList) {
@@ -133,6 +112,12 @@ public class CartService {
             OrderDto orderDto = new OrderDto();
             orderDto.setItemId(cartItem.getItem().getId());
             orderDto.setCount(cartItem.getCount());
+            orderDto.setPhonenum(cartOrderDto.getPhonenum());
+            orderDto.setAddress1(cartOrderDto.getAddress1());
+            orderDto.setAddress2(cartOrderDto.getAddress2());
+            orderDto.setPostcode(cartOrderDto.getPostcode());
+            orderDto.setPaymentMethod(cartOrderDto.getPaymentMethod());
+
             orderDtoList.add(orderDto);
         }
 
@@ -146,8 +131,5 @@ public class CartService {
 
         return orderId;
     }
-
-
-
 }
 

@@ -64,24 +64,6 @@ public class OrderController {
         return new ResponseEntity<Long>(orderId, HttpStatus.OK);
     }
 
-//    @GetMapping("/order/payment")
-//    public String paymentPage(@RequestParam List<Long> itemIds, @RequestParam List<Integer> counts, Principal principal, Model model) {
-//        // 사용자 정보 가져오기
-//        MemberFormDto memberFormDto = memberService.getMemberInfo(principal.getName());
-//        model.addAttribute("member", memberFormDto);
-//
-//        // 상품 정보 가져오기
-//        List<OrderDto> orderDtoList = new ArrayList<>();
-//        for (int i = 0; i < itemIds.size(); i++) {
-//            OrderDto orderDto = new OrderDto();
-//            orderDto.setItemId(itemIds.get(i));
-//            orderDto.setCount(counts.get(i));
-//            orderDtoList.add(orderDto);
-//        }
-//        model.addAttribute("orderDtoList", orderDtoList);
-//
-//        return "MerleBleu/order/payment"; // 결제 페이지로 이동
-//    }
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/order/payment")

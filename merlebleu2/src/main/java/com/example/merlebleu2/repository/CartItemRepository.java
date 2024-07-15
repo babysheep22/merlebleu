@@ -27,5 +27,6 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
             "where ci.id in :cartItemIds")
     List<CartOrderDto> findCartOrderDtoList(@Param("cartItemIds") List<Long> cartItemIds);
 
+
     List<CartItem> findByIdIn(List<Long> cartItemIds);
 }

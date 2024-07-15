@@ -113,14 +113,5 @@ public class OrderService {
         return order.getId();
     }
 
-    public List<CartOrderDto> getCartOrderList(List<Long> cartItemIdList, List<Integer> counts) {
-        List<CartOrderDto> cartOrderDtoList = cartItemRepository.findCartOrderDtoList(cartItemIdList);
 
-        // 수량을 업데이트합니다.
-        for (int i = 0; i < cartOrderDtoList.size(); i++) {
-            cartOrderDtoList.get(i).setCount(counts.get(i));
-        }
-
-        return cartOrderDtoList;
-    }
 }
