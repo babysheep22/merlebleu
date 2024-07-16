@@ -124,236 +124,40 @@
             </div>
             <table id="stuff-results">
                 <tbody>
-                <tr>
-                    <td>
-                        <div class="container-outer">
-                            <a href="#"><img src="../img/bag/bag.jpg" id="project-img" width="345" height="345"
-                                             onmouseover="this.src='../img/bag/bag2.jpg';"
-                                             onmouseout="this.src='../img/bag/bag.jpg';">
-                                <div class="overlay">
-                                    <p class="overlay-text" style="left: 50%; top: 30%;">Merle Bleu</p>
-                                    <p class="outer text-outer"><a href="#">가</a></p>
-                                    <p class="line-through"
-                                       style="text-decoration: line-through; color: #ccc; left: 10%;">259,000원
-                                    </p>
-                                    <p class="price" style="left: 40%;">100원</p>
-                                    <p class="discount" style="color: red; left: 70%;">10%</p>
-                                    <div class="overlay2">
-                                        <a href="#">
-                                            <p class="color-box"></p>
-                                        </a>
-                                        <a href="#">
-                                            <p class="color-box2"></p>
-                                        </a>
-                                    </div>
+                <th:block th:if="${items != null}">
+                    <th:block th:each="item, itemStat : ${items.content}">
+                        <tr th:class="${itemStat.index >= 12} ? 'hidden' : ''">
+                            <td>
+                                <div class="container-outer">
+                                    <a th:href="'/item/'+${item.id}">
+                                        <img th:src="${item.imgUrl}" id="project-img" width="345" height="345"
+                                             onmouseover="this.th:src='../img/special/bra2.jpg';"
+                                             onmouseout="this.th:src='../img/special/bra.jpg';">
+                                        <div class="overlay">
+                                            <p class="overlay-text" style="left: 50%; top: 20%;">Merle Bleu</p>
+                                            <p class="outer text-outer">
+                                                <a th:href="'/item/'+${item.id}">[[${item.itemNm}]]</a>
+                                            </p>
+                                            <p class="line-through" style="text-decoration: line-through; color: #ccc; left: 10%;">
+                                                [[${item.listprice}]]원
+                                            </p>
+                                            <p class="price" style="left: 40%;">[[${item.sellprice}]]원</p>
+                                            <p class="discount" style="color: red; left: 70%;">[[${item.discount}]]%</p>
+                                            <div class="overlay2">
+                                                <a th:href="'/item/'+${item.id}">
+                                                    <p class="color-box"></p>
+                                                </a>
+                                                <a th:href="'/item/'+${item.id}">
+                                                    <p class="color-box2"></p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>
-                        <div class="container-outer">
-                            <a href="#"><img src="../img/etc/etc.jpg" id="project-img" width="345" height="345"
-                                             onmouseover="this.src='../img/etc/etc2.jpg';"
-                                             onmouseout="this.src='../img/etc/etc.jpg';">
-                                <div class="overlay">
-                                    <p class="overlay-text" style="left: 50%; top: 30%;">Merle Bleu</p>
-                                    <p class="outer text-outer"><a href="#">나</a></p>
-                                    <p class="line-through"
-                                       style="text-decoration: line-through; color: #ccc; left: 10%;">259,000원
-                                    </p>
-                                    <p class="price" style="left: 40%;">5,100원</p>
-                                    <p class="discount" style="color: red; left: 70%;">10%</p>
-                                    <div class="overlay2">
-                                        <a href="#">
-                                            <p class="color-box"></p>
-                                        </a>
-                                        <a href="#">
-                                            <p class="color-box2"></p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>
-                        <div class="container-outer">
-                            <a href="#"><img src="../img/belt/belt.jpg" id="project-img" width="345" height="345"
-                                             onmouseover="this.src='../img/belt/belt2.jpg';"
-                                             onmouseout="this.src='../img/belt/belt.jpg';">
-                                <div class="overlay">
-                                    <p class="overlay-text" style="left: 50%; top: 30%;">Merle Bleu</p>
-                                    <p class="outer text-outer"><a href="#">다</a></p>
-                                    <p class="line-through"
-                                       style="text-decoration: line-through; color: #ccc; left: 10%;">259,000원
-                                    </p>
-                                    <p class="price" style="left: 40%;">783,100원</p>
-                                    <p class="discount" style="color: red; left: 70%;">10%</p>
-                                    <div class="overlay2">
-                                        <a href="#">
-                                            <p class="color-box"></p>
-                                        </a>
-                                        <a href="#">
-                                            <p class="color-box2"></p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>
-                        <div class="container-outer">
-                            <a href="#"><img src="../img/hat/hat.jpg" id="project-img" width="345" height="345"
-                                             onmouseover="this.src='../img/hat/hat2.jpg';"
-                                             onmouseout="this.src='../img/hat/hat.jpg';">
-                                <div class="overlay">
-                                    <p class="overlay-text" style="left: 50%; top: 30%;">Merle Bleu</p>
-                                    <p class="outer text-outer"><a href="#">라</a></p>
-                                    <p class="line-through"
-                                       style="text-decoration: line-through; color: #ccc; left: 10%;">259,000원
-                                    </p>
-                                    <p class="price" style="left: 40%;">400원</p>
-                                    <p class="discount" style="color: red; left: 70%;">10%</p>
-                                    <div class="overlay2">
-                                        <a href="#">
-                                            <p class="color-box"></p>
-                                        </a>
-                                        <a href="#">
-                                            <p class="color-box2"></p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>
-                        <div class="container-outer">
-                            <a href="#"><img src="../img/scarf/scarf.jpg" id="project-img" width="345" height="345"
-                                             onmouseover="this.src='../img/scarf/scarf2.jpg';"
-                                             onmouseout="this.src='../img/scarf/scarf.jpg';">
-                                <div class="overlay">
-                                    <p class="overlay-text" style="left: 50%; top: 30%;">Merle Bleu</p>
-                                    <p class="outer text-outer"><a href="#">카카카</a></p>
-                                    <p class="line-through"
-                                       style="text-decoration: line-through; color: #ccc; left: 10%;">259,000원
-                                    </p>
-                                    <p class="price" style="left: 40%;">999,100원</p>
-                                    <p class="discount" style="color: red; left: 70%;">10%</p>
-                                    <div class="overlay2">
-                                        <a href="#">
-                                            <p class="color-box"></p>
-                                        </a>
-                                        <a href="#">
-                                            <p class="color-box2"></p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>
-                        <div class="container-outer">
-                            <a href="#"><img src="../img/shoes/shoes.jpg" id="project-img" width="345" height="345"
-                                             onmouseover="this.src='../img/shoes/shoes2.jpg';"
-                                             onmouseout="this.src='../img/shoes/shoes.jpg';">
-                                <div class="overlay">
-                                    <p class="overlay-text" style="left: 50%; top: 30%;">Merle Bleu</p>
-                                    <p class="outer text-outer"><a href="#">하하하</a></p>
-                                    <p class="line-through"
-                                       style="text-decoration: line-through; color: #ccc; left: 10%;">259,000원
-                                    </p>
-                                    <p class="price" style="left: 40%;">8,100원</p>
-                                    <p class="discount" style="color: red; left: 70%;">10%</p>
-                                    <div class="overlay2">
-                                        <a href="#">
-                                            <p class="color-box"></p>
-                                        </a>
-                                        <a href="#">
-                                            <p class="color-box2"></p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>
-                        <div class="container-outer">
-                            <a href="#"><img src="../img/socks/socks.jpg" id="project-img" width="345" height="345"
-                                             onmouseover="this.src='../img/socks/socks2.jpg';"
-                                             onmouseout="this.src='../img/socks/socks.jpg';">
-                                <div class="overlay">
-                                    <p class="overlay-text" style="left: 50%; top: 30%;">Merle Bleu</p>
-                                    <p class="outer text-outer"><a href="#">구구구콘</a></p>
-                                    <p class="line-through"
-                                       style="text-decoration: line-through; color: #ccc; left: 10%;">259,000원
-                                    </p>
-                                    <p class="price" style="left: 40%;">555,100원</p>
-                                    <p class="discount" style="color: red; left: 70%;">10%</p>
-                                    <div class="overlay2">
-                                        <a href="#">
-                                            <p class="color-box"></p>
-                                        </a>
-                                        <a href="#">
-                                            <p class="color-box2"></p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-                <tbody class="hidden">
-                <tr>
-                    <td>
-                        <div class="container-outer">
-                            <a href="#"><img src="../img/socks/socks.jpg" id="project-img" width="345" height="345"
-                                             onmouseover="this.src='../img/socks/socks2.jpg';"
-                                             onmouseout="this.src='../img/socks/socks.jpg';">
-                                <div class="overlay">
-                                    <p class="overlay-text" style="left: 50%; top: 30%;">Merle Bleu</p>
-                                    <p class="outer text-outer"><a href="#">사자</a></p>
-                                    <p class="line-through"
-                                       style="text-decoration: line-through; color: #ccc; left: 10%;">259,000원
-                                    </p>
-                                    <p class="price" style="left: 40%;">32,100원</p>
-                                    <p class="discount" style="color: red; left: 70%;">10%</p>
-                                    <div class="overlay2">
-                                        <a href="#">
-                                            <p class="color-box"></p>
-                                        </a>
-                                        <a href="#">
-                                            <p class="color-box2"></p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
+                            </td>
+                        </tr>
+                    </th:block>
+                </th:block>
                 </tbody>
             </table>
         </div>
