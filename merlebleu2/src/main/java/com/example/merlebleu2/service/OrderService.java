@@ -1,9 +1,6 @@
 package com.example.merlebleu2.service;
 
-import com.example.merlebleu2.dto.CartOrderDto;
-import com.example.merlebleu2.dto.OrderDto;
-import com.example.merlebleu2.dto.OrderHistDto;
-import com.example.merlebleu2.dto.OrderItemDto;
+import com.example.merlebleu2.dto.*;
 import com.example.merlebleu2.entity.*;
 import com.example.merlebleu2.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -30,6 +28,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final ItemImgRepository itemImgRepository;
     private final CartItemRepository cartItemRepository;
+    private final ItemService itemService;
 
     public Long order(OrderDto orderDto, String email) {
         //주문할 상품 조회
@@ -111,6 +110,28 @@ public class OrderService {
         orderRepository.save(order);
 
         return order.getId();
+    }
+
+    public List<BasketOrderDto> getOrderInfo(CartOrderDto request){
+        System.err.println("sdfsdfsdfsdfsdffds");
+        return request.getCartOrderDtoList().stream().map(this::toBasketOrderDto).collect(Collectors.toList());
+    }
+
+    public BasketOrderDto toBasketOrderDto(CartOrderDto dto){
+        System.err.println(dto);
+        Item item = itemRepository.findById(cartItemRepository.findById(dto.getCartItemId()).orElse(null).getItem().getId())
+                .orElse(null);
+
+
+        System.err.println("item : " + item);
+        return BasketOrderDto.builder()
+                .dto(dto)
+                .itemNm(item.getItemNm())
+                .sellprice(item.getSellprice())
+                .mainimgurl(itemImgRepository.findByItemIdAndRepimgYn(item.getId(), "Y").getImgUrl())
+                .itemId(item.getId())
+                .build();
+
     }
 
 

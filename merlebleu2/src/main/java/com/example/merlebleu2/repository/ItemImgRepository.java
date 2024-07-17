@@ -10,4 +10,5 @@ public interface ItemImgRepository extends JpaRepository<ItemImg, Long>{
 
     ItemImg findByItemIdAndRepimgYn(Long itemId, String repimgYn);
     // 구매 이력에서 상품 대표 이미지 보여주기 위해 추가
+
 }

@@ -85,7 +85,6 @@ public class ItemService {
             itemImgService.updateItemImg(itemImgIds.get(i),
                     itemImgFileList.get(i));
         }
-
         return item.getId();
     }
 
@@ -101,6 +100,11 @@ public class ItemService {
 
     @Transactional(readOnly = true)
     public Page<MainItemDto> getItemsByCategory(ItemSearchDto itemSearchDto, Pageable pageable) {
+        return itemRepository.getMainItemPage(itemSearchDto, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MainItemDto> getItemsByItemId(ItemSearchDto itemSearchDto, Pageable pageable){
         return itemRepository.getMainItemPage(itemSearchDto, pageable);
     }
 

@@ -1,11 +1,9 @@
 package com.example.merlebleu2.controller;
 
-import com.example.merlebleu2.dto.MemberFormDto;
-import com.example.merlebleu2.dto.OrderDto;
-import com.example.merlebleu2.dto.OrderHistDto;
-import com.example.merlebleu2.dto.CartOrderDto;
+import com.example.merlebleu2.dto.*;
 import com.example.merlebleu2.entity.Item;
 import com.example.merlebleu2.repository.ItemRepository;
+import com.example.merlebleu2.service.ItemService;
 import com.example.merlebleu2.service.MemberService;
 import com.example.merlebleu2.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -36,6 +34,7 @@ public class OrderController {
     private final MemberService memberService;
     private final OrderService orderService;
     private final ItemRepository itemRepository;
+    private final ItemService itemService;
 
     @PostMapping(value = "/order")
     public @ResponseBody ResponseEntity order(@RequestBody @Valid OrderDto orderDto
@@ -68,13 +67,16 @@ public class OrderController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/order/payment")
     public String paymentPage(@RequestParam Long itemId, @RequestParam Integer count, Principal principal, Model model) {
+        if (principal == null) {
+            return "redirect:/members/login";
+        }
         // 사용자 정보 가져오기
         MemberFormDto memberFormDto = memberService.getMemberInfo(principal.getName());
         model.addAttribute("member", memberFormDto);
 
         // 상품 정보 가져오기
         Item item = itemRepository.findById(itemId).orElseThrow(EntityNotFoundException::new);
-        model.addAttribute("item", item);
+        model.addAttribute("item" , item);
 
         OrderDto orderDto = new OrderDto();
         orderDto.setItemId(itemId);
@@ -82,7 +84,8 @@ public class OrderController {
         model.addAttribute("order", orderDto);
 
 
-        return "MerleBleu/order/payment"; // 결제 페이지로 이동
+//        return "MerleBleu/order/payment"; // 결제 페이지로 이동
+        return "MerleBleu/order/merlebleu_payment";
     }
 
     //주문내역

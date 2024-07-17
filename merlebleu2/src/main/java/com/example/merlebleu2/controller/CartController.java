@@ -161,9 +161,10 @@ public class CartController {
 
         }
 //        System.err.println(items);
-        model.addAttribute("orders" , cartOrderDtoList);
-        model.addAttribute("items", items);
-        return "MerleBleu/order/cartpayment";
+        model.addAttribute("orders" , orderService.getOrderInfo(cartOrderDto));
+//        model.addAttribute("items", items);
+//        return "MerleBleu/order/cartpayment";
+        return "MerleBleu/order/merlebleu_cartpayment";
     }
 
     @ExceptionHandler(AccessDeniedException.class)

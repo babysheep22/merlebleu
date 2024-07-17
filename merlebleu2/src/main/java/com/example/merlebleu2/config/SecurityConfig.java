@@ -36,7 +36,8 @@ public class SecurityConfig {
                 );
 
         http.authorizeRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/", "/shop/**" ,"/cart/**","/order/**","/image/**" ,"/images/**","/members/**", "/item/**", "/img/**", "/css/**", "/js/**", "/MerlBleu/**" , "/merlebleu/**", "/main/**").permitAll()  // 모든 사용자가 인증 없이 접근 가능한 페이지
+                        .requestMatchers("/", "/shop/**" ,"/image/**" ,"/images/**","/members/**", "/item/**", "/img/**", "/css/**", "/js/**", "/MerlBleu/**" , "/merlebleu/**", "/main/**").permitAll()  // 모든 사용자가 인증 없이 접근 가능한 페이지
+                        .requestMatchers("/cart/**" ,"/order/**" ).authenticated() //인증된 사용자만
                         .requestMatchers("/admin/**").hasRole("ADMIN")  // /admin으로 시작하는 경로에 ADMIN Role만 접근 가능하게 설정
                         .anyRequest().authenticated()  // 나머지 요청은 인증 필요
                 )
