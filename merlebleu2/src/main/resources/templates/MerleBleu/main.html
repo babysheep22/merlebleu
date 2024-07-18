@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 
 <head>
@@ -105,7 +106,12 @@
                         </a>
                     </div>
                     <ul class="top_logo">
-                        <li><a href="/members/login#">LOGIN/JOIN</a></li>
+                        <li sec:authorize="isAnonymous()">
+                            <a href="/members/login#">LOGIN/JOIN</a>
+                        </li>
+                        <li sec:authorize="isAuthenticated()">
+                            <a href="/members/logout">LOGOUT</a>
+                        </li>
                         <li><a href="" onmouseover="cateHover('cate_box_child8')"
                                onmouseout="cateOut()">COMMUNITY</a></li>
                         <li><a href=""><img src="../img/icon/jjim.png" alt=""></a></li>

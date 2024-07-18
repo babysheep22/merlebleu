@@ -110,18 +110,18 @@
             updateTotal();
         }
 
-        function updateTotal() {
-            var checkboxes = document.querySelectorAll('tbody input[type="checkbox"]:checked');
-            var total = 0; // 초기화된 값
-            checkboxes.forEach(function (checkbox) {
-                total += parseInt(checkbox.value);
-            });
-            // 선택된 상품의 가격을 총 상품 금액에 더하고 배송비를 추가하여 출력
-            document.getElementById("sum").value = total + deliveryFee + "원";
+<!--        function updateTotal() {-->
+<!--            var checkboxes = document.querySelectorAll('tbody input[type="checkbox"]:checked');-->
+<!--            var total = 0; // 초기화된 값-->
+<!--            checkboxes.forEach(function (checkbox) {-->
+<!--                total += parseInt(checkbox.value);-->
+<!--            });-->
+<!--            // 선택된 상품의 가격을 총 상품 금액에 더하고 배송비를 추가하여 출력-->
+<!--            document.getElementById("sum").value = total + deliveryFee + "원";-->
 
-            // 선택된 상품의 가격을 총 상품 금액에만 업데이트
-            document.getElementById("product_total").textContent = total + "원";
-        }
+<!--            // 선택된 상품의 가격을 총 상품 금액에만 업데이트-->
+<!--            document.getElementById("product_total").textContent = total + "원";-->
+<!--        }-->
 
         function nightlight(checkbox) {
             updateTotal();
@@ -163,21 +163,34 @@
         }
 
 
-        function order() {
+        function orders() {
+            console.log('click');
             var token = $("meta[name='_csrf']").attr("content");
             var header = $("meta[name='_csrf_header']").attr("content");
 
-            var url = "/order";
+            var url = "/cart/orders";
+            var cartOrderDtoList = [];
+
+            $("input[name='cartChkBox']:checked").each(function(index, element) {
+                var cartItemId = $(element).val();
+                var count = $(element).closest('tr').find("#count").val();
+
+                var cartOrderItem = {
+                    cartItemId: cartItemId,
+                    count: count
+                };
+
+                cartOrderDtoList.push(cartOrderItem);
+            });
+
             var paramData = {
-                itemId : $("#itemId").val(),
-                count : $("#count").val(),
+                cartOrderDtoList: cartOrderDtoList,
                 phonenum: $("#sample4_phone").val(),
                 postcode: $("#sample4_postcode").val(),
                 address1: $("#sample4_roadAddress").val(),
                 address2: $("#sample4_detailAddress").val(),
-                paymentMethod: $("input[name='paymentMethod']:checked").val()
+                paymentMethod: $("#paymentMethodInput").val()
             };
-
 
             var param = JSON.stringify(paramData);
 
@@ -228,9 +241,6 @@
                         <li style="font-size: 15px;">배송비 <span id="product_total"
                                                                style="color: rgb(44, 107, 255); font-weight: bold;">3000원</span>
                         </li>
-                        <li style="font-size: 15px;">도서산간료 <span id="product_total"
-                                                                 style="color: rgb(44, 107, 255); font-weight: bold;">0원</span>
-                        </li>
                         <li style="font-size: 15px;">적립금 사용 <span id="product_total"
                                                                   style="color: rgb(44, 107, 255); font-weight: bold;">0원</span>
                         </li>
@@ -246,7 +256,7 @@
                     style="border: none; width: 150px; background: none; font-size: 18px; font-weight: bold; color: rgb(44, 107, 255); "
                     type="text" id="sum" size="5" value="3000"></span></label>
         </div>
-        <button type="submit" class="btn_regst" value="regstri" style="cursor: pointer;" onclick="order()">
+        <button type="submit" class="btn_regst" value="regstri" style="cursor: pointer;" onclick="orders()">
             <span class="btn_txt">결제</span>
         </button>
     </div>
@@ -314,7 +324,7 @@
 
                 <tr th:each="order : ${orders}">
                     <td>
-                        <input type="checkbox" id="ck1" onclick="nightlight(this)" th:value="${order.sellprice}">
+                        <input type="checkbox" id="ck1" onclick="nightlight(this)" name="cartChkBox" th:value="${order.cartItemId}">
                     </td>
                     <td>
                         <div class="detail_title">
@@ -326,7 +336,7 @@
                     <td>xs</td>
                     <td><span th:text="${order.count}"></span></td>
                     <td><span th:text="${order.sellprice}"></span></td>
-                    <input type="hidden" id="itemId" th:value="${order.cartItemId}">
+                    <input type="hidden" id="cartItemId" th:value="${order.getCartItemId}">
                     <input type="hidden" id="count" th:value="${order.count}">
                     <td>0p</td>
                 </tr>
